@@ -26,14 +26,22 @@ hull_points = hull_points[::-1]
 
 (rot_angle, area, width, height, center_point, corner_points) = minBoundingRect(hull_points)
 print "Bounding Box of Eng3:"
+
+ngraph=[]
+ngraph.append({"id":"b-eng3","coords":[center_point[0],center_point[1]]}) # Get it out of numpy.
 print corner_points
+
 
 #Get paths + points
 paths=[]
 for node in root.findall('.//way/tag[@v="path"]/..')+root.findall('.//way/tag[@v="footway"]/..'):
 	path=[]
 	for point in node.findall("nd"):
-		path.append(nodes[point.get("ref")])
-	paths.append(path)
+		path.append({"id":point.get("ref"),"coords":nodes[point.get("ref")]})
+		ngraph.append({"id":point.get("ref"),"coords":nodes[point.get("ref")]})
+	paths.append({"id":node.get("id"),"nodes":path})
+
+
+
 
 print str(len(paths))+" paths found"
