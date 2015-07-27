@@ -7,13 +7,17 @@ from min_bounding_rect import *
 tree = ET.parse('mapdata.xml')
 root = tree.getroot()
 nodes={}
-
+# Get all nodes
 for node in root.findall(".//node"):
-	nodes[node.get("id")]=[float(node.get("lat")),float(node.get("lon"))] # Watch out for this. Longitudes are all +ve numbers. Switch before displaying!
+	nodes[node.get("id")]=[float(node.get("lat")),float(node.get("lon"))]
+
+#Bounding box start
+
 points=[]
-for node in root.findall('.//way/tag[@v="Engineering 3"]/../nd'): # Find Eng3 and get a bounding box
+for node in root.findall('.//way/tag[@v="Engineering 3"]/../nd'): # Find Eng3 and get points
 	points.append(nodes[node.get("ref")])
 
+#Calculate a bounding box
 xy_points = array(points)
 
 hull_points = qhull2D(xy_points)
@@ -24,6 +28,7 @@ hull_points = hull_points[::-1]
 print "Bounding Box of Eng3:"
 print corner_points
 
+#Get paths + points
 paths=[]
 for node in root.findall('.//way/tag[@v="path"]/..')+root.findall('.//way/tag[@v="footway"]/..'):
 	path=[]
