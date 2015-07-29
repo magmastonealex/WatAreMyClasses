@@ -5,24 +5,36 @@ from min_bounding_rect import *
 from LatLon import LatLon
 from Queue import Queue
 from threading import Thread
+import pickle
+import os
 
 INF=10**10
 
 def floydwarshall(V, edges): #number of edges,
-	dist=[[INF]*V for i in range(V)]
-
-	for i in range(V):
-		dist[i][i] = 0
-	
+	#dist=[[INF]*V for i in range(V)]
+	dist={}
+	#init dist dictionary. I'm pretty sure that this will have the side effect of removing any dupes.
+	for edge in edges:
+		dist[edge[0]]={}
+		for ed in edges:
+			if ed[0] != edge[0]:
+				dist[edge[0]][ed[0]]=INF
+	#distance to self always =0
+	for i in edges:
+		dist[i[0]][i[0]] = 0
+	#Set already-known distances
 	for (start,end,distance) in edges:
 		dist[start][end] = distance
-
-	for k in range(V):
-		for j in range(V):
-			for i in range(V):
+	#Calculate distances for the rest
+	for k in edges:
+		k=k[0]
+		for j in edges:
+			j=j[0]
+			for i in edges:
+				i=i[0]
 				if dist[i][j] > dist[i][k] + dist[k][j]:
 					dist[i][j] = dist[i][k] + dist[k][j]
-
+	#Return all the distances. NOT PATHS.
 	return dist
 
 
@@ -56,6 +68,7 @@ print corner_points
 ngraph=[]
 ngraph.append({"id":"b-eng3","coords":[center_point[0],center_point[1]],"ll":LatLon(center_point[0],center_point[1]),"neighbours":[]}) # Get it out of numpy.
 
+edges=[]
 #Get paths and associated points
 paths=[]
 for node in root.findall('.//way/tag[@v="path"]/..')+root.findall('.//way/tag[@v="footway"]/..'):
@@ -67,6 +80,10 @@ for node in root.findall('.//way/tag[@v="path"]/..')+root.findall('.//way/tag[@v
 		if lnode != None:
 			node["neighbours"].append(ngraph[-1]["id"])
 			ngraph[-1]["neighbours"].append(node["id"])
+			dist=dist=node["ll"].distance(lnode["ll"])*1000
+			dist=int(dist)# Don't need sub-meter accuracy, really.
+			edges.append([node["id"],ngraph[-1]["id"],dist])
+			edges.append([ngraph[-1]["id"],node["id"],dist])
 		else:
 			lnode=node
 		ngraph.append(node)
@@ -74,16 +91,13 @@ for node in root.findall('.//way/tag[@v="path"]/..')+root.findall('.//way/tag[@v
 print len(ngraph)
 
 
-#Inefficient to a ridiculous degree. Better way of doing this?
-#Probably want to pickle/otherwise save this.
-#Also not sure if we want to use LatLon for this. 
-#Great-circle distances are an alternative, but LatLong uses that under the hood anyways.
-#LatLong also offers headings between points and other simplified geo-calculations.
+
+#Rather inefficient. Runs in a bit less than O(n^2).
 
 #Thread it? Yep
 
 q = Queue()
-edges=[]
+
 cur=0
 def checkNode():
 	global q
@@ -94,30 +108,36 @@ def checkNode():
 		node,idx=q.get()
 		nLL=node["ll"]
 		for node2 in ngraph:
-			if node["id"] == node2["id"]:
+			if node["id"] == node2["id"] or node2["id"] in node["neighbours"]:
 				continue
 			n2LL=node2["ll"]
-			dist=nLL.distance(n2LL)*1000
-			if (dist) < 80: #distance in km, conv to m
-				
-				edges.append([node2["id"],node["id"],dist])
+			dist=nLL.distance(n2LL)*1000 #distance in km, conv to m
+			dist=int(dist) # Don't need sub-meter accuracy, really.
+			if dist < 40:
 				edges.append([node["id"],node2["id"],dist])
-	
 				ngraph[idx]["neighbours"].append(node2["id"])
 				node2["neighbours"].append(node["id"])
 		q.task_done()
 
-for i in range(10): # Roughly falloff point of performance bell-curve on an octacore.
-     t = Thread(target=checkNode)
-     t.daemon = True # otherwise we need to keep track of them all. Just let them die on leave.
-     t.start()
+if not os.path.exists("graph.pic"):
+	for i in range(10): # Roughly falloff point of performance bell-curve on an octacore.
+	     t = Thread(target=checkNode)
+	     t.daemon = True # otherwise we need to keep track of them all. Just let them die on leave.
+	     t.start()
+	
+	for node in ngraph:
+		q.put([node,ngraph.index(node)])
+	q.join()
+	
+	for node in ngraph: #de-duplication
+		ngraph[ngraph.index(node)]["neighbours"]=list(set(node["neighbours"]))
+	pickle.dump(ngraph,open("graph.pic","wb"))
+	pickle.dump(edges,open("edges.pic","wb"))
+else:
+	print "Loaded calculated values"
+	ngraph=pickle.load(open("graph.pic","rb"))
+	edges=pickle.load(open("edges.pic","rb"))
 
-for node in ngraph:
-	q.put([node,ngraph.index(node)])
-q.join()
 
-#Get rid of non-unique neighbours
-for node in ngraph:
-	node["neighbours"]=list(set(node["neighbours"]))
 print ngraph
 print str(len(paths))+" paths found"
