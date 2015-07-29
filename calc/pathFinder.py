@@ -1,5 +1,5 @@
 import pickle
-
+import os
 #Loads/calculates needed data for pathfinding.
 
 class pathFinder:
@@ -8,12 +8,13 @@ class pathFinder:
 	edges=[]
 	#Optionally takes in a list of edges. Not needed if the files are computed already.
 	def __init__(self,ledges=None):
-		if ledges==None:
+		if ledges!=None:
 			self.edges=ledges
 
 	#Uses Floyd-Warshall algorithm to build distances between nodes, as well as a "next node" dictionary for use in pathfinding.
 	#Saves it's output to be loaded next time.
-	def build(edges): #number of edges,
+	def build(self,edges): #number of edges,
+		print "Starting calculation..."
 		#dist=[[INF]*V for i in range(V)]
 		dist={}
 		nex={}
@@ -47,7 +48,7 @@ class pathFinder:
 		pickle.dump(self.nex,open("nex.pic","wb"))
 
 	#Call this to either build or load all of the data needed for pathfinding.
-	def makeDataValid():
+	def makeDataValid(self):
 		if self.canLoad():
 			self.load()
 		else:

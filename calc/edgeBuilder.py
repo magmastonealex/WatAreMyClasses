@@ -2,9 +2,10 @@ from Queue import Queue
 from threading import Thread
 from LatLon import LatLon
 import pickle
+import os
 class edgeBuilder:
 	q = Queue() # Queue because we might need it.
-	def __init__(self,edges=[],ngraph=[],nodes={}}): #Optionally takes basic edges, basic graph, and all the known nodes. 
+	def __init__(self,edges=[],ngraph=[],nodes={}): #Optionally takes basic edges, basic graph, and all the known nodes. 
 		self.edges=edges
 		self.ngraph=ngraph
 		self.nodes=nodes

@@ -1,7 +1,7 @@
 from qhull_2d import *
 from min_bounding_rect import *
 from LatLon import LatLon
-
+import xml.etree.ElementTree as ET
 class osm:
 	filename=""
 	root=None
@@ -40,15 +40,15 @@ class osm:
 		hull_points = hull_points[::-1]
 		(rot_angle, area, width, height, center_point, corner_points) = minBoundingRect(hull_points)
 		self.ngraph.append({"id":"b-"+name,"coords":[center_point[0],center_point[1]],"ll":LatLon(center_point[0],center_point[1]),"neighbours":[]})
-	
+		
 	#Collect all of the paths between buildings and around campus.
 	def collectPaths(self):
-		for node in root.findall('.//way/tag[@v="path"]/..')+root.findall('.//way/tag[@v="footway"]/..'):
+		for node in self.root.findall('.//way/tag[@v="path"]/..')+self.root.findall('.//way/tag[@v="footway"]/..'):
 			path=[]
 			lnode=None
 			for point in node.findall("nd"):
-				path.append({"id":point.get("ref"),"coords":nodes[point.get("ref")]})
-				node={"id":point.get("ref"),"coords":nodes[point.get("ref")],"ll":LatLon(nodes[point.get("ref")][0],nodes[point.get("ref")][1]),"neighbours":[]}
+				path.append({"id":point.get("ref"),"coords":self.nodes[point.get("ref")]})
+				node={"id":point.get("ref"),"coords":self.nodes[point.get("ref")],"ll":LatLon(self.nodes[point.get("ref")][0],self.nodes[point.get("ref")][1]),"neighbours":[]}
 				if lnode != None:
 					node["neighbours"].append(self.ngraph[-1]["id"])
 					self.ngraph[-1]["neighbours"].append(node["id"])

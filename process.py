@@ -3,7 +3,7 @@ from calc import edgeBuilder
 from parsers import osm
 
 
-ma=osm("mapdat.xml")
+ma=osm("mapdata.xml")
 ma.runAll()
 
 edges=ma.edges
