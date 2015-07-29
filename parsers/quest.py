@@ -25,4 +25,5 @@ def uw_waterloo_quest_schedule(input):
 		found=False
 		ampm=False
 
-		if re.match('/(AM)|(PM)/', ) != None
+		if re.match('/(AM)|(PM)/', ) != None:
+			pass
