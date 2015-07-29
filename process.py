@@ -10,15 +10,18 @@ import os
 
 INF=10**10
 
-def floydwarshall(V, edges): #number of edges,
+def floydwarshall(edges): #number of edges,
 	#dist=[[INF]*V for i in range(V)]
 	dist={}
+	nex={}
 	#init dist dictionary. I'm pretty sure that this will have the side effect of removing any dupes.
 	for edge in edges:
 		dist[edge[0]]={}
+		nex[edge[0]]={}
 		for ed in edges:
 			if ed[0] != edge[0]:
 				dist[edge[0]][ed[0]]=INF
+				nex[edge[0]][ed[0]]=ed[0]
 	#distance to self always =0
 	for i in edges:
 		dist[i[0]][i[0]] = 0
@@ -34,10 +37,19 @@ def floydwarshall(V, edges): #number of edges,
 				i=i[0]
 				if dist[i][j] > dist[i][k] + dist[k][j]:
 					dist[i][j] = dist[i][k] + dist[k][j]
+					nex[i][j] = nex[i][k]
 	#Return all the distances. NOT PATHS.
-	return dist
+	return [dist,nex]
 
 
+def path(u,v,nex):
+	if nex[u][v]==None:
+		return []
+	path = [u]
+	while u != v:
+		u=nex[u][v]
+		path.append(u)
+	return path
 
 tree = ET.parse('mapdata.xml')
 root = tree.getroot()
@@ -124,20 +136,23 @@ if not os.path.exists("graph.pic"):
 	     t = Thread(target=checkNode)
 	     t.daemon = True # otherwise we need to keep track of them all. Just let them die on leave.
 	     t.start()
-	
+	print "Running..."
 	for node in ngraph:
 		q.put([node,ngraph.index(node)])
 	q.join()
-	
+	print "De-Duplication..."
 	for node in ngraph: #de-duplication
 		ngraph[ngraph.index(node)]["neighbours"]=list(set(node["neighbours"]))
 	pickle.dump(ngraph,open("graph.pic","wb"))
 	pickle.dump(edges,open("edges.pic","wb"))
 else:
-	print "Loaded calculated values"
+	print "Loading calculated values"
 	ngraph=pickle.load(open("graph.pic","rb"))
 	edges=pickle.load(open("edges.pic","rb"))
+	print "Loaded calculated values"
 
+fWout=floydwarshall(edges)
+pickle.dump(fWout,open("fw.pic","wb"))
 
-print ngraph
+print edges
 print str(len(paths))+" paths found"
