@@ -1,19 +1,20 @@
 import pickle
 import os
 #Loads/calculates needed data for pathfinding.
-
+from viewer import NodeCollection,Node
 class pathFinder:
 	dist=[]
 	nex=[]
 	edges=[]
+	nodeCol=None
 	#Optionally takes in a list of edges. Not needed if the files are computed already.
-	def __init__(self,ledges=None):
-		if ledges!=None:
-			self.edges=ledges
+	def __init__(self,nC):
+		self.nodeCol=nC
 
 	#Uses Floyd-Warshall algorithm to build distances between nodes, as well as a "next node" dictionary for use in pathfinding.
 	#Saves it's output to be loaded next time.
-	def build(self,edges): #number of edges,
+	def build(self): #number of edges,
+		edges=self.nodeCol.edges
 		print "Starting calculation..."
 		#dist=[[INF]*V for i in range(V)]
 		dist={}
@@ -32,9 +33,13 @@ class pathFinder:
 		#Set already-known distances
 		for (start,end,distance) in edges:
 			dist[start][end] = distance
+
 		#Calculate distances for the rest
+		cnt=0
 		for k in edges:
 			k=k[0]
+			print cnt
+			cnt=cnt+1
 			for j in edges:
 				j=j[0]
 				for i in edges:
@@ -44,24 +49,10 @@ class pathFinder:
 						nex[i][j] = nex[i][k]
 		self.dist=dist
 		self.nex=nex
+		print "Finished!"
 		pickle.dump(self.dist,open("dist.pic","wb"))
 		pickle.dump(self.nex,open("nex.pic","wb"))
 
-	#Call this to either build or load all of the data needed for pathfinding.
-	def makeDataValid(self):
-		if self.canLoad():
-			self.load()
-		else:
-			if self.edges==[]:
-				raise NeedCalculationDataError
-			self.build(self.edges)
-			
-	#Check if the class has all the files it needs to load.
-	def canLoad(self):
-		if os.path.exists("dist.pic"):
-			return True
-		else:
-			return False
 	#Load all the files.
 	def load(self):
 		self.dist=pickle.load(open("dist.pic","rb"))

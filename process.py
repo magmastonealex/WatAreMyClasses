@@ -1,20 +1,23 @@
 from calc import pathFinder
 from calc import edgeBuilder
 from parsers import osm
+from viewer import NodeCollection,Node
 
+nC=NodeCollection()
+nC.load()
 
-ma=osm("mapdata.xml")
-ma.runAll()
+pF=pathFinder(nC)
+pF.build()
 
-edges=ma.edges
-paths=ma.paths
-ngraph=ma.ngraph
-nodes=ma.nodes
+#ma=osm("mapdata2.xml",nC)
+#ma.runAll()
+#nC.save()
+#print nC.edges
+#print nC.vertices
 
-eb=edgeBuilder(edges,ngraph,nodes)
-eb.makeDataValid()
-edges=eb.edges
-ngraph=eb.ngraph
+#eB=edgeBuilder(nC)
+#eB.build()
+#nC.save()
 
-pF=pathFinder(edges)
-pF.makeDataValid()
+#pF=pathFinder(edges)
+#pF.makeDataValid()
