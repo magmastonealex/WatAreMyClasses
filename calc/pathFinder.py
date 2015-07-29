@@ -14,8 +14,13 @@ class pathFinder:
 	#Uses Floyd-Warshall algorithm to build distances between nodes, as well as a "next node" dictionary for use in pathfinding.
 	#Saves it's output to be loaded next time.
 	def build(self): #number of edges,
-		edges=self.nodeCol.edges
+		edgeU=self.nodeCol.edges
+		edges=[]
+		for edge in edgeU:
+			edges.append(edge)
+			edges.append((edge[1],edge[0],edge[2]))
 		print "Starting calculation..."
+		print len(edges)
 		#dist=[[INF]*V for i in range(V)]
 		dist={}
 		nex={}
@@ -27,6 +32,7 @@ class pathFinder:
 				if ed[0] != edge[0]:
 					dist[edge[0]][ed[0]]=10**10 #INF!
 					nex[edge[0]][ed[0]]=ed[0]
+		print "Initted"
 		#distance to self always =0
 		for i in edges:
 			dist[i[0]][i[0]] = 0
@@ -34,10 +40,12 @@ class pathFinder:
 		for (start,end,distance) in edges:
 			dist[start][end] = distance
 
+		print len(edges)
 		#Calculate distances for the rest
 		cnt=0
 		for k in edges:
 			k=k[0]
+			print k
 			print cnt
 			cnt=cnt+1
 			for j in edges:

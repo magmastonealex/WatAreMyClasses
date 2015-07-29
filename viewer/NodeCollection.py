@@ -33,15 +33,15 @@ class NodeCollection(object):
 	def addEdge(self,id1,id2,length):
 		self.vertices[id1].adjacent.append((id2,length))
 		self.vertices[id2].adjacent.append((id1,length))
-		self.edges.append((id1,id2,length)) # not sure about this. 
-		self.edges.append((id2,id1,length))
+		self.edges.append((min(id1,id2),max(id1,id2),length))
 	def save(self):
 		pickle.dump(self.vertices,open("verts.pic","wb"))
 		pickle.dump(self.edges,open("edges.pic","wb"))
 	def load(self):
 		self.vertices=pickle.load(open("verts.pic","rb"))
 		self.edges=pickle.load(open("edges.pic","rb"))
-
+	def dedupe(self):
+		self.edges=list(set(self.edges))
 def ccw(a,b,c):
     return (b.x - a.x)*(c.y - a.y) - (b.y - a.y)*(c.x - a.x)
 
