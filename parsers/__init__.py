@@ -1,2 +1,2 @@
 from osm import osm
-from quest import quest
+import quest
