@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style type="text/css">
+      html, body, #map-canvas { height: 100%; margin: 0; padding: 0;}
+    </style>
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQScFY1VJZtD13CM1c6ie7Kk56D9NqroM">
+    </script>
+    <script type="text/javascript">
+      function initialize() {
+        var mapOptions = {
+          center: { lat: 43.471476, lng:-80.543259},
+          zoom: 8
+        };
+        var map = new google.maps.Map(document.getElementById('map-canvas'),
+            mapOptions);
+        
+
+        var marker = new google.maps.Marker({
+          position: new google.maps.LatLng(43.4705021,-80.5385289),
+          map: map,
+          title: ""
+          });
+        
+
+        var marker = new google.maps.Marker({
+          position: new google.maps.LatLng(43.4705366,-80.5385185),
+          map: map,
+          title: ""
+          });
+        
+
+        var marker = new google.maps.Marker({
+          position: new google.maps.LatLng(43.4706017,-80.5385136),
+          map: map,
+          title: ""
+          });
+        
+
+        var marker = new google.maps.Marker({
+          position: new google.maps.LatLng(43.4709209,-80.5386369),
+          map: map,
+          title: ""
+          });
+        
+
+        var marker = new google.maps.Marker({
+          position: new google.maps.LatLng(43.4710669,-80.5388354),
+          map: map,
+          title: ""
+          });
+        
+
+        var marker = new google.maps.Marker({
+          position: new google.maps.LatLng(43.4713158,-80.5390523),
+          map: map,
+          title: ""
+          });
+        
+
+        var marker = new google.maps.Marker({
+          position: new google.maps.LatLng(43.4714793,-80.5393259),
+          map: map,
+          title: ""
+          });
+        
+
+        var marker = new google.maps.Marker({
+          position: new google.maps.LatLng(43.4717206,-80.5397202),
+          map: map,
+          title: ""
+          });
+        
+
+        var marker = new google.maps.Marker({
+          position: new google.maps.LatLng(43.4717495,-80.5397638),
+          map: map,
+          title: ""
+          });
+        
+
+        var marker = new google.maps.Marker({
+          position: new google.maps.LatLng(43.4718351,-80.539981),
+          map: map,
+          title: ""
+          });
+        
+
+        var marker = new google.maps.Marker({
+          position: new google.maps.LatLng(43.4719341,-80.5402088),
+          map: map,
+          title: ""
+          });
+        
+
+        var marker = new google.maps.Marker({
+          position: new google.maps.LatLng(43.471941,-80.5405177),
+          map: map,
+          title: ""
+          });
+        
+
+        var marker = new google.maps.Marker({
+          position: new google.maps.LatLng(43.471711769,-80.5407630285),
+          map: map,
+          title: "Engineering 3"
+          });
+        
+  var flightPlanCoordinates = [
+    
+    new google.maps.LatLng(43.4705021,-80.5385289),
+    
+    new google.maps.LatLng(43.4705366,-80.5385185),
+    
+    new google.maps.LatLng(43.4706017,-80.5385136),
+    
+    new google.maps.LatLng(43.4709209,-80.5386369),
+    
+    new google.maps.LatLng(43.4710669,-80.5388354),
+    
+    new google.maps.LatLng(43.4713158,-80.5390523),
+    
+    new google.maps.LatLng(43.4714793,-80.5393259),
+    
+    new google.maps.LatLng(43.4717206,-80.5397202),
+    
+    new google.maps.LatLng(43.4717495,-80.5397638),
+    
+    new google.maps.LatLng(43.4718351,-80.539981),
+    
+    new google.maps.LatLng(43.4719341,-80.5402088),
+    
+    new google.maps.LatLng(43.471941,-80.5405177),
+    
+    new google.maps.LatLng(43.471711769,-80.5407630285),
+    
+  ];
+  var flightPath = new google.maps.Polyline({
+    path: flightPlanCoordinates,
+    geodesic: true,
+    strokeColor: '#FF0000',
+    strokeOpacity: 1.0,
+    strokeWeight: 2
+  });
+  flightPath.setMap(map);
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+  </head>
+  <body>
+<div id="map-canvas"></div>
+  </body>
+</html>
