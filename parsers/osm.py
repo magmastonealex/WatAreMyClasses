@@ -3,10 +3,11 @@ from calc.min_bounding_rect import *
 from LatLon import LatLon
 import xml.etree.ElementTree as ET
 from viewer import NodeCollection,Node
+from parsers import BuildingList
 class osm:
 	filename=""
 	root=None
-
+	bL=BuildingList()
 	paths=[]
 	nCollection=None
 	# Takes the filename for OpenStreetMaps XML.
@@ -23,7 +24,9 @@ class osm:
 		if self.root==None:
 			self.open()
 		self.collectNodes()
-		self.getBuilding("Engineering 3")
+
+		for building in bL:
+			self.getBuilding(building)
 		self.collectPaths()
 	tempNodes={}
 	#Get all nodes using XPath from the OSM data. This isn't in usual node format because we don't know or care about neighbours/relative nodes. at this point.
@@ -36,6 +39,8 @@ class osm:
 		points=[]
 		for node in self.root.findall('.//way/tag[@v="'+name+'"]/../nd'): # Find Eng3 and get boundary points
 			points.append(self.tempNodes[node.get("ref")])
+		if len(points)==0:
+			return
 		#Calculate a bounding box
 		xy_points = array(points)
 		hull_points = qhull2D(xy_points)

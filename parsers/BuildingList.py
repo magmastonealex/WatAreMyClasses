@@ -1,6 +1,6 @@
 import requests
 import json
-
+#TODO: This needs caching.  Badly.
 class BuildingList:
 	buildings={}
 	allbuildings=[]
@@ -16,4 +16,4 @@ class BuildingList:
 		return self.buildings[key]
 
 	def __iter__(self):
-		return self.allbuildings
+		return self.allbuildings.__iter__()
