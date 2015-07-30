@@ -13,7 +13,7 @@ class pathFinder:
 
 	#Uses Floyd-Warshall algorithm to build distances between nodes, as well as a "next node" dictionary for use in pathfinding.
 	#Saves it's output to be loaded next time.
-	def build(self): #number of edges,
+	def build(self,**kwargs): #number of edges,
 		edgeU=self.nodeCol.edges
 		edges=[]
 		for edge in edgeU:
@@ -62,8 +62,9 @@ class pathFinder:
 		print "Finished!"
 		#dedupe based on the same characteristics as NodeController does for Edges.
 		print "De-Dupe complete"
-		pickle.dump(self.dist,open("dist.pic","wb"))
-		pickle.dump(self.nex,open("nex.pic","wb"))
+		if "test" not in kwargs:
+			pickle.dump(self.dist,open("dist.pic","wb"))
+			pickle.dump(self.nex,open("nex.pic","wb"))
 
 	#Load all the files.
 	def load(self):
