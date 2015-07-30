@@ -73,7 +73,7 @@ class pathFinder:
 	#findPath is used to find the ideal path between two nodes.
 	#distance is easy: self.dist[u][v]
 	#Pass in two node IDs.
-	def findPath(u,v):
+	def findPath(self,u,v):
 		if self.nex[u][v]==None:
 			return []
 		path = [u]
