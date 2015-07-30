@@ -3,16 +3,17 @@ from calc.min_bounding_rect import *
 from LatLon import LatLon
 import xml.etree.ElementTree as ET
 from viewer import NodeCollection,Node
-from parsers import BuildingList
+
 class osm:
 	filename=""
 	root=None
-	bL=BuildingList()
+	bL=None
 	paths=[]
 	nCollection=None
 	# Takes the filename for OpenStreetMaps XML.
 	def __init__(self,filename,nodeCollection):
 		self.filename=filename
+		bL=buildingList()
 		self.nCollection=nodeCollection
 	#Open the file. Doesn't need to be called manually.
 	def open(self):
@@ -24,9 +25,6 @@ class osm:
 		if self.root==None:
 			self.open()
 		self.collectNodes()
-
-		for building in bL:
-			self.getBuilding(building)
 		self.collectPaths()
 	tempNodes={}
 	#Get all nodes using XPath from the OSM data. This isn't in usual node format because we don't know or care about neighbours/relative nodes. at this point.

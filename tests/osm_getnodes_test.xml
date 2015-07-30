@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="CGImap 0.4.0 (12873 thorn-01.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <bounds minlat="43.4714260" minlon="-80.5428650" maxlat="43.4719500" maxlon="-80.5391480"/>
+ <node id="114158644" visible="true" version="8" changeset="29688070" timestamp="2015-03-23T20:41:28Z" user="andrewpmk" uid="1679" lat="43.4709026" lon="-80.5379042">
+  <tag k="crossing:barrier" v="no"/>
+  <tag k="crossing:light" v="yes"/>
+  <tag k="railway" v="level_crossing"/>
+ </node>
+ <node id="277307822" visible="true" version="6" changeset="13435870" timestamp="2012-10-10T03:04:11Z" user="permute" uid="158267" lat="43.4644920" lon="-80.5415116"/>
+ <node id="277307823" visible="true" version="3" changeset="607146" timestamp="2008-10-28T01:30:09Z" user="NoseyNick" uid="75433" lat="43.4708830" lon="-80.5381226"/>
+ <node id="277308883" visible="true" version="4" changeset="14897678" timestamp="2013-02-03T15:15:10Z" user="permute" uid="158267" lat="43.4666273" lon="-80.5399570"/>
+</osm>
