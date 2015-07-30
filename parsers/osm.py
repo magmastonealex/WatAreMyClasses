@@ -25,6 +25,7 @@ class osm:
 		if self.root==None:
 			self.open()
 		self.collectNodes()
+		self.getBuilding("Engineering 3")
 		self.collectPaths()
 	tempNodes={}
 	#Get all nodes using XPath from the OSM data. This isn't in usual node format because we don't know or care about neighbours/relative nodes. at this point.

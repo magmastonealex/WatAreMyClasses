@@ -58,8 +58,9 @@ class pathFinder:
 						nex[i][j] = nex[i][k]
 		self.dist=dist
 		self.nex=nex
-		print "Finished!"
 
+		print "Finished!"
+		#dedupe based on the same characteristics as NodeController does for Edges.
 		print "De-Dupe complete"
 		pickle.dump(self.dist,open("dist.pic","wb"))
 		pickle.dump(self.nex,open("nex.pic","wb"))

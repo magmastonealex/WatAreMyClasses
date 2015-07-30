@@ -22,6 +22,7 @@ class edgeBuilder:
 					continue
 				dist=node.latlong.distance(node2.latlong)*1000 #distance in km, conv to m
 				dist=int(dist) # Don't need sub-meter accuracy, really.
+				print dist
 				if dist < 40:
 					self.nCollection.addEdge(node.id,node2.id,dist)
 			print node.id
