@@ -1,2 +1,3 @@
 from osm import osm
-import quest
+from BuildingList import BuildingList
+from Quest import Quest

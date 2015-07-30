@@ -4,17 +4,8 @@ from parsers import osm
 from viewer import NodeCollection,Node
 
 nC=NodeCollection()
-#nC.load()
-
-
-ma=osm("mapdata2.xml",nC)
-ma.runAll()
-nC.save()
-
-eB=edgeBuilder(nC)
-eB.build()
-nC.save()
-
+nC.load()
 nC.dedupe()
+nC.save()
 pF=pathFinder(nC)
 pF.build()

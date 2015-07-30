@@ -19,7 +19,9 @@ class pathFinder:
 		for edge in edgeU:
 			edges.append(edge)
 			edges.append((edge[1],edge[0],edge[2]))
+
 		print "Starting calculation..."
+
 		print len(edges)
 		#dist=[[INF]*V for i in range(V)]
 		dist={}
@@ -40,7 +42,6 @@ class pathFinder:
 		for (start,end,distance) in edges:
 			dist[start][end] = distance
 
-		print len(edges)
 		#Calculate distances for the rest
 		cnt=0
 		for k in edges:
@@ -58,6 +59,8 @@ class pathFinder:
 		self.dist=dist
 		self.nex=nex
 		print "Finished!"
+
+		print "De-Dupe complete"
 		pickle.dump(self.dist,open("dist.pic","wb"))
 		pickle.dump(self.nex,open("nex.pic","wb"))
 
