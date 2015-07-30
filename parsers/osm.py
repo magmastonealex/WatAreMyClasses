@@ -13,7 +13,7 @@ class osm:
 	# Takes the filename for OpenStreetMaps XML.
 	def __init__(self,filename,nodeCollection):
 		self.filename=filename
-		bL=buildingList()
+
 		self.nCollection=nodeCollection
 	#Open the file. Doesn't need to be called manually.
 	def open(self):
