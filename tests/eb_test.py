@@ -22,6 +22,7 @@ class TestOSM(unittest.TestCase):
 
 	def test_edge_builder(self):
 		#this really only tests if adds the right number of edges, not that the edges are necessarily correct
+		#True, but edgeBuilder's algorithm will return them in mixed up orders.
 		fnc=fakeNodeCollection()
 		eB=edgeBuilder(fnc)
 		eB.build()
