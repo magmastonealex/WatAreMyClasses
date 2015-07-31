@@ -1,7 +1,7 @@
 from jinja2 import Environment, PackageLoader
 from viewer import NodeCollection,Node
 from services import Paths
-
+import web
 
 class IndexServlet:
 	def GET(self):
