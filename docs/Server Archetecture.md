@@ -20,9 +20,34 @@ If you're comfortable working in a VM, or run Linux natively, I highly reccommen
 
 Install and set up `postgres` and `redis` according to your favourite distro's guide.
 
-Postgres is organized into database>schema>tables. We're using the default database, and the wat schema. User is wat, password is 'uwaterloo'. Very temporary, make it obvious and changable in your code!
+Postgres is organized into database>tables. We're using the default database. User is wat, password is 'uwaterloo'. Very temporary, make it obvious and changable in your code!
 
-We don't yet have a schema set up for tables. This will be updated when we do.
+Node schema:
+```
+CREATE TABLE nodes (
+    id varchar(30) PRIMARY KEY,
+    name varchar(200),
+    lat double precision,
+    long double precision
+);
+```
+Timetable schema:
+
+```
+CREATE TABLE timetable (
+    id serial primary key,
+    cls varchar(200),
+    tpe varchar(10),
+    sec varchar(10),
+    uname varchar(200),
+    building varchar(10),
+    time timestamp,
+    time_end timestamp
+);
+
+CREATE INDEX uname_index ON timetable USING hash(uname);
+
+```
 
 The standard Redis notation uses ':' as a field separator. So, for examples, you might store the result of a path as: 'pathcache:node1:node2'. **All values should be in JSON!**
 
