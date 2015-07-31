@@ -2,8 +2,5 @@ numpy >=1.9.2
 LatLon >=1.0.2
 pygame >=1.9.1release
 requests >=2.7.0
-<<<<<<< HEAD
-=======
-webpy >= 0.37
->>>>>>> web
+web.py 
 redis >= 2.10.3
