@@ -12,10 +12,10 @@ getNextClass(userid) # for a given user, get their next class.
 """
 class Database:
 	def __init__(self):
-		self.redis = redis.Redis()
-		self.dbconn=psycopg2.connect("dbname='postgres' host='localhost' user='wat' password='uwaterloo'")
+		self.red = redis.Redis()
+		self.dbconn=psycopg2.connect("dbname='postgres' host='localhost' user='postgres' password='ourpasswordissosecure'")
 	def getNode(self,nodeid):
-		x=redis.get("nodes:"+nodeid).split(",")
+		x=self.red.get("nodes:"+nodeid).split(",")
 		return WebNode(nodeid,x[0],x[1],x[2]) # ID, lat, long, name
 	def getClosestNode(self,ulat,ulong):
 		cur = self.dbconn.cursor()
