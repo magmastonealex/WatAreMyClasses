@@ -10,9 +10,9 @@ class fakeNodeCollection:
 	vertices={}
 	edges=[]
 	def __init__(self):
-		self.vertices["test1"]=Node(self,"test1",43.726797, -79.782870,latlong=LatLon(43.726797, -79.782870))
-		self.vertices["test2"]=Node(self,"test2",43.726782, -79.782835,latlong=LatLon(43.726782, -79.782835))
-		self.vertices["test3"]=Node(self,"test3",43.726761, -79.782808,latlong=LatLon(43.726761, -79.782808))
+		self.vertices["test1"]=Node("test1",43.726797, -79.782870,latlong=LatLon(43.726797, -79.782870))
+		self.vertices["test2"]=Node("test2",43.726782, -79.782835,latlong=LatLon(43.726782, -79.782835))
+		self.vertices["test3"]=Node("test3",43.726761, -79.782808,latlong=LatLon(43.726761, -79.782808))
 	def __getitem__(self,key):
 		return self.vertices[key]
 	def addEdge(self,id1,id2,dist):
@@ -21,6 +21,7 @@ class fakeNodeCollection:
 class TestOSM(unittest.TestCase):
 
 	def test_edge_builder(self):
+		#this really only tests if adds the right number of edges, not that the edges are necessarily correct
 		fnc=fakeNodeCollection()
 		eB=edgeBuilder(fnc)
 		eB.build()
