@@ -1,3 +1,5 @@
+#! /bin/python
+
 import web
 from index import IndexServlet
 
