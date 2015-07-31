@@ -5,3 +5,4 @@ requests >=2.7.0
 web.py
 jinja2
 redis >= 2.10.3
+psycopg2
