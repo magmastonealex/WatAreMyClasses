@@ -39,6 +39,7 @@ CREATE TABLE timetable (
     cls varchar(200),
     tpe varchar(10),
     sec varchar(10),
+    prof varchar(60),
     uname varchar(200),
     building varchar(10),
     time timestamp,

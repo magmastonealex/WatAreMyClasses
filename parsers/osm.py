@@ -3,7 +3,17 @@ from calc.min_bounding_rect import *
 from LatLon import LatLon
 import xml.etree.ElementTree as ET
 from viewer import NodeCollection,Node
+"""
+Scrapes data from an OpenStreetMaps XML file.
 
+Usage:
+
+x=osm("mapdata2.xml",nodeCollection)
+x.runAll()
+
+nodeCollection now is populated with data.
+
+"""
 class osm:
 	filename=""
 	root=None

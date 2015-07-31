@@ -1,0 +1,414 @@
+
+List View
+Weekly Calendar View
+Select Display Option
+Fall 2015 | Undergraduate | University of Waterloo
+CS 137 - Programming Principles
+Status	Units	Grading	Grade
+Enrolled
+0.50
+Numeric Grading Basis
+ 
+Class Nbr	Section	Component	Days & Times	Room	Instructor	Start/End Date
+6361
+001
+LEC
+MWF 10:30 - 11:20
+MC   1085
+Andrew Morton
+14/09/2015 - 04/12/2015
+ 
+ 	
+ 
+W 16:30 - 17:20
+EIT 1015
+Andrew Morton
+23/09/2015 - 23/09/2015
+ 
+ 	
+ 
+W 16:30 - 17:20
+EIT 1015
+Andrew Morton
+07/10/2015 - 07/10/2015
+ 
+ 	
+ 
+W 16:30 - 17:20
+EIT 1015
+Andrew Morton
+21/10/2015 - 21/10/2015
+ 
+ 	
+ 
+W 16:30 - 17:20
+EIT 1015
+Andrew Morton
+04/11/2015 - 04/11/2015
+ 
+ 	
+ 
+W 16:30 - 17:20
+EIT 1015
+Andrew Morton
+18/11/2015 - 18/11/2015
+ 
+ 	
+ 
+W 16:30 - 17:20
+EIT 1015
+Andrew Morton
+02/12/2015 - 02/12/2015
+6363
+102
+LAB
+F 15:30 - 16:20
+MC   2063
+Staff
+18/09/2015 - 18/09/2015
+6473
+202
+TUT
+F 15:30 - 16:20
+MC   2017
+Staff
+21/09/2015 - 04/12/2015
+Exam Information
+ 
+ECE 105 - Physics of Electrical Eng 1
+Status	Units	Grading	Grade
+Enrolled
+0.50
+Numeric Grading Basis
+ 
+Class Nbr	Section	Component	Days & Times	Room	Instructor	Start/End Date
+5250
+004
+LEC
+M 15:30 - 16:20
+MC 2066
+Kostadinka Bizheva
+14/09/2015 - 04/12/2015
+ 
+ 	
+ 
+T 15:30 - 16:20
+EIT 1015
+Kostadinka Bizheva
+14/09/2015 - 04/12/2015
+ 
+ 	
+ 
+W 15:30 - 16:20
+EIT 1015
+Kostadinka Bizheva
+14/09/2015 - 04/12/2015
+ 
+ 	
+ 
+M 16:30 - 17:20
+RCH   302
+Kostadinka Bizheva
+28/09/2015 - 28/09/2015
+ 
+ 	
+ 
+M 16:30 - 17:20
+RCH   302
+Kostadinka Bizheva
+12/10/2015 - 12/10/2015
+ 
+ 	
+ 
+M 16:30 - 17:20
+RCH   302
+Kostadinka Bizheva
+26/10/2015 - 26/10/2015
+ 
+ 	
+ 
+M 16:30 - 17:20
+RCH   302
+Kostadinka Bizheva
+09/11/2015 - 09/11/2015
+ 
+ 	
+ 
+M 16:30 - 17:20
+RCH   302
+Kostadinka Bizheva
+23/11/2015 - 23/11/2015
+5251
+111
+TUT
+T 08:30 - 10:20
+MC   2038
+Staff
+14/09/2015 - 04/12/2015
+Exam Information
+ 
+ECE 140 - Linear Circuits
+Status	Units	Grading	Grade
+Enrolled
+0.50
+Numeric Grading Basis
+ 
+Class Nbr	Section	Component	Days & Times	Room	Instructor	Start/End Date
+5185
+108
+TUT
+W 08:30 - 10:20
+MC   1056
+Staff
+14/09/2015 - 04/12/2015
+5253
+004
+LEC
+MWF 11:30 - 12:20
+RCH   302
+Mohamed-Yahia Dabbagh
+14/09/2015 - 04/12/2015
+ 
+ 	
+ 
+W 16:30 - 17:20
+EIT 1015
+Mohamed-Yahia Dabbagh
+30/09/2015 - 30/09/2015
+ 
+ 	
+ 
+W 16:30 - 17:20
+EIT 1015
+Mohamed-Yahia Dabbagh
+14/10/2015 - 14/10/2015
+ 
+ 	
+ 
+W 16:30 - 17:20
+EIT 1015
+Mohamed-Yahia Dabbagh
+28/10/2015 - 28/10/2015
+ 
+ 	
+ 
+W 16:30 - 17:20
+EIT 1015
+Mohamed-Yahia Dabbagh
+11/11/2015 - 11/11/2015
+ 
+ 	
+ 
+W 16:30 - 17:20
+EIT 1015
+Mohamed-Yahia Dabbagh
+25/11/2015 - 25/11/2015
+5507
+207
+LAB
+Th 08:30 - 10:20
+E2 3346
+Staff
+14/09/2015 - 04/12/2015
+Exam Information
+ 
+MATH 115 - Linear Algebra (Eng)
+Status	Units	Grading	Grade
+Enrolled
+0.50
+Numeric Grading Basis
+ 
+Class Nbr	Section	Component	Days & Times	Room	Instructor	Start/End Date
+6533
+201
+TST
+TBA
+TBA
+Staff
+14/09/2015 - 04/12/2015
+6656
+007
+LEC
+M 12:30 - 13:20
+RCH   302
+Staff
+14/09/2015 - 04/12/2015
+ 
+ 	
+ 
+W 13:30 - 14:20
+EIT 1015
+Staff
+14/09/2015 - 04/12/2015
+ 
+ 	
+ 
+T 14:30 - 15:20
+EIT 1015
+Staff
+14/09/2015 - 04/12/2015
+ 
+ 	
+ 
+Th 15:30 - 16:20
+EIT 1015
+Staff
+24/09/2015 - 24/09/2015
+ 
+ 	
+ 
+Th 15:30 - 16:20
+EIT 1015
+Staff
+08/10/2015 - 08/10/2015
+ 
+ 	
+ 
+Th 15:30 - 16:20
+EIT 1015
+Staff
+22/10/2015 - 22/10/2015
+ 
+ 	
+ 
+Th 15:30 - 16:20
+EIT 1015
+Staff
+05/11/2015 - 05/11/2015
+ 
+ 	
+ 
+Th 15:30 - 16:20
+EIT 1015
+Staff
+19/11/2015 - 19/11/2015
+ 
+ 	
+ 
+Th 15:30 - 16:20
+EIT 1015
+Staff
+03/12/2015 - 03/12/2015
+8434
+116
+TUT
+F 08:30 - 10:20
+MC   4040
+Staff
+14/09/2015 - 04/12/2015
+Exam Information
+ 
+MATH 117 - Calculus 1 for Engineering
+Status	Units	Grading	Grade
+Enrolled
+0.50
+Numeric Grading Basis
+ 
+Class Nbr	Section	Component	Days & Times	Room	Instructor	Start/End Date
+6236
+005
+LEC
+T 16:30 - 17:20
+EIT 1015
+Mikhail Panine
+14/09/2015 - 04/12/2015
+ 
+ 	
+ 
+W 14:30 - 15:20
+EIT 1015
+Mikhail Panine
+14/09/2015 - 04/12/2015
+ 
+ 	
+ 
+Th 14:30 - 15:20
+EIT 1015
+Mikhail Panine
+14/09/2015 - 04/12/2015
+ 
+ 	
+ 
+Th 15:30 - 16:20
+EIT 1015
+Mikhail Panine
+01/10/2015 - 01/10/2015
+ 
+ 	
+ 
+Th 15:30 - 16:20
+EIT 1015
+Mikhail Panine
+15/10/2015 - 15/10/2015
+ 
+ 	
+ 
+Th 15:30 - 16:20
+EIT 1015
+Mikhail Panine
+29/10/2015 - 29/10/2015
+ 
+ 	
+ 
+Th 15:30 - 16:20
+EIT 1015
+Mikhail Panine
+12/11/2015 - 12/11/2015
+ 
+ 	
+ 
+Th 15:30 - 16:20
+EIT 1015
+Mikhail Panine
+26/11/2015 - 26/11/2015
+6504
+115
+TUT
+M 08:30 - 10:20
+MC   1056
+Staff
+14/09/2015 - 04/12/2015
+6613
+201
+TST
+TBA
+TBA
+Staff
+14/09/2015 - 04/12/2015
+Exam Information
+ 
+SE 101 - Intro to Methods Software Eng
+Status	Units	Grading	Grade
+Enrolled
+0.25
+Numeric Grading Basis
+ 
+Class Nbr	Section	Component	Days & Times	Room	Instructor	Start/End Date
+7574
+001
+LEC
+T 11:30 - 12:20
+RCH   302
+Mahesh Tripunitara
+14/09/2015 - 04/12/2015
+7575
+201
+LAB
+Th 11:30 - 13:20
+CPH 1346
+Mahesh Tripunitara
+14/09/2015 - 04/12/2015
+7611
+101
+SEM
+T 12:30 - 13:20
+RCH   302
+Mahesh Tripunitara
+14/09/2015 - 04/12/2015
+Exam Information
+ 
+Printer Friendly Page
+ 	My Academics	 	 	 	Course Selection (Undergrad Only)	 	 	 	Enroll	 	 	 	Go Pass	 	 
+ 	My Class Schedule	 	 	 	Add	 	 	 	Drop	 	 	 	Swap	 	 	 	Component Swap	 	 	 	Appointments	 	 	 	Search For Classes	 	 
+GO!
+

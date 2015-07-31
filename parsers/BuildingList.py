@@ -1,6 +1,15 @@
 import requests
 import json
-#TODO: This needs caching.  Badly.
+"""
+TODO: This needs caching.  Badly.
+BuildingList is an object that stores all of the buildings, by code, at uwaterloo.
+Usage:
+
+x=BuildingList()
+print x["RCH"]
+gives: Roy Coutts Engineering Lecture Hall
+
+"""
 class BuildingList:
 	buildings={}
 	allbuildings=[]

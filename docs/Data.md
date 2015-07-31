@@ -1,8 +1,9 @@
 Data Locations
 ====
 
-- Nodes that are a part of the graph (So things that NodeCollection holds) should all be added to postgres in their own table. (Perhaps redis too for fast lookups!?)
+- Nodes that are a part of the graph (So things that NodeCollection holds) should all be added to postgres in their own table.
 	- Need fast speed for the postitional query.
+	- Nodes are also stored in Redis for memory-backed cache of nodes.
 
 - Pathfinding results should be stored in Redis
 

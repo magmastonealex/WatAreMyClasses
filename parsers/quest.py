@@ -67,7 +67,7 @@ class Quest:
 						else:
 							timestamp="to_timestamp('"+a.replace(" ","")+" "+start.replace(" ","")+"', 'dd/mm/yyyy hh24:mi')"
 							timestamp_end="to_timestamp('"+a.replace(" ","")+" "+end.replace(" ","")+"', 'dd/mm/yyyy hh24:mi')"
-						ins=ins+"INSERT INTO timetable (uname,building,time,time_end,cls,sec,typ) VALUES('','"+scheditem[1]+"',"+timestamp+","+timestamp_end+",'"+name+"','"+section+"','"+typ+"');"
+						ins=ins+"INSERT INTO timetable (uname,building,time,time_end,cls,sec,typ,prof) VALUES('','"+scheditem[1]+"',"+timestamp+","+timestamp_end+",'"+name+"','"+section+"','"+typ+"','"+scheditem[2]+"');" #prof
 					else:
 						pass
 						#more work...
