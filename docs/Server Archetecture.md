@@ -6,7 +6,7 @@ Server Archetecture
 	- varnish-cache is ready to deploy if it helps
 		- Varnish will cache certain files and request types to respond much quicker than lighttpd.
 - Redis
-	- Redis is used as the memory cache for the app.  Redis is a Key-Value store. It uses strings as keys, and stores anything as the value. Redis caches found paths. **JSON is the internal format to be used with Redis! It makes it easier if we ever need to port the data or backend to something else!**
+	- Redis is used as the memory cache for the app.  Redis is a Key-Value store. It uses strings as keys, and stores anything as the value. Redis caches found paths. **JSON is the internal format to be used with complex data and Redis! It makes it easier if we ever need to port the data or backend to something else!**
 - PostgreSQL
 	- PostgreSQL is a highly efficient and easy scalable DB. It also has great support for geospacial queries and working with Latitude/Longitude coordinates.
 - web.py
@@ -77,7 +77,7 @@ Install these schema by running the commands in the postgres prompt. (`sudo su p
 Run a local dev server by simply running 
 
 
-The standard Redis notation uses ':' as a field separator. So, for examples, you might store the result of a path as: 'pathcache:node1:node2'. **All values should be in JSON!**
+The standard Redis notation uses ':' as a field separator. So, for examples, you might store the result of a path as: 'pathcache:node1:node2'. **All complex values should be in JSON!**
 
 The `psychopg` and `redis` modules are used to connect to the respective datastores. Use `localhost` and default ports.  Redis doesn't use auth, postgres is detailed above.
 
