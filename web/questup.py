@@ -7,7 +7,7 @@ class QuestUploadServlet:
 	def GET(self):
 		env = Environment(loader=PackageLoader('html', ''))
 		template = env.get_template('quest.html')
-		return template.render(vertices=xs,path=pth)
+		return template.render()
 	def POST(self):
 		dbase=Database()
 		inp=web.input(quest="badquesty")

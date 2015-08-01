@@ -8,7 +8,7 @@ from questup import QuestUploadServlet
 
 urls = (
 	'/', 'IndexServlet',
-	'/test', 'CASpyServlet'
+	'/test', 'CASpyServlet',
 	'/questup', 'QuestUploadServlet'
 )
 
