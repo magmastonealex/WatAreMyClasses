@@ -3,9 +3,13 @@ import os
 os.chdir(os.path.dirname(os.path.realpath(__file__))) # then we can use abs path.
 import web
 from index import IndexServlet
+from caspy import CASpyServlet
+from questup import QuestUploadServlet
 
 urls = (
-	'/', 'IndexServlet'
+	'/', 'IndexServlet',
+	'/test', 'CASpyServlet'
+	'/questup', 'QuestUploadServlet'
 )
 
 

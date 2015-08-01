@@ -29,4 +29,7 @@ class Database:
 		rows = cur.fetchall()
 		nextclass=rows[0]
 		return WaterlooClassTime(nextclass[0],nextclass[1],nextclass[3],nextclass[6],nextclass[7],nextclass[4],nextclass[2],nextclass[5])
+	def run_sql(self,sql):
+		cur = self.dbconn.cursor()
+		cur.execute(sql)
 #								#(ID,class_name,section,timestamp,timeend,instructor,type,building-room

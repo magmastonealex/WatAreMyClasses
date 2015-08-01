@@ -6,3 +6,4 @@ web.py
 jinja2
 redis >= 2.10.3
 psycopg2
+caslib.py
