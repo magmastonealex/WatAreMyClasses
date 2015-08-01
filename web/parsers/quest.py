@@ -71,7 +71,8 @@ class Quest:
 						else:
 							timestamp="to_timestamp('"+a.replace(" ","")+" "+start.replace(" ","").replace("h","")+"', 'dd/mm/yyyy hh24:mi')"
 							timestamp_end="to_timestamp('"+a.replace(" ","")+" "+end.replace(" ","").replace("h","")+"', 'dd/mm/yyyy hh24:mi')"
-						self.db.run_sql("INSERT INTO timetable (uname,building,time,time_end,cls,sec,tpe,prof) VALUES('','"+scheditem[1]+"',"+timestamp+","+timestamp_end+",'"+name+"','"+section+"','"+typ+"','"+scheditem[2]+"');") #prof
+						# function passing by %s is impossible, thus the concat.
+						self.db.run_sql("INSERT INTO timetable (uname,building,time,time_end,cls,sec,tpe,prof) VALUES('',%s,"+timestamp+","+timestamp_end+",%s,%s,%s,%s);",(scheditem[1],name,section,typ,scheditem[2])) #prof
 					else:
 						print typ+" "+name
 						#start date is on Monday (of term!), end date is on Friday.
@@ -130,7 +131,8 @@ class Quest:
 							for time in class_times:
 								timestamp="to_timestamp('"+time.strftime("%d-%m-%Y")+" "+start.replace(" ","").replace("h","")+"', 'dd/mm/yyyy hh24:mi')"
 								timestamp_end="to_timestamp('"+time.strftime("%d-%m-%Y")+" "+end.replace(" ","").replace("h","")+"', 'dd/mm/yyyy hh24:mi')"
-								self.db.run_sql("INSERT INTO timetable (uname,building,time,time_end,cls,sec,tpe,prof) VALUES('','"+scheditem[1]+"',"+timestamp+","+timestamp_end+",'"+name+"','"+section+"','"+typ+"','"+scheditem[2]+"');") #prof
+								# function passing by %s is impossible, thus the concat.
+								self.db.run_sql("INSERT INTO timetable (uname,building,time,time_end,cls,sec,tpe,prof) VALUES('',%s,"+timestamp+","+timestamp_end+",%s,%s,%s,%s);",(scheditem[1],name,section,typ,scheditem[2])) #prof
 
 							#more work..
 		return ins
