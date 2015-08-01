@@ -8,7 +8,7 @@ Init by passing a Database object.
 
 Run getPath(nodeid1,nodeid2) to have a path returned.
 
-Heavily utilizes caching via Redis..
+Heavily utilizes caching via Redis.
 """
 class Paths:
 	def __init__(self,db):

@@ -3,6 +3,10 @@ from db import Database
 from model import WaterlooClassTime,WebNode
 from services import Paths
 import web
+"""
+Temporary Index servlet to prove the concept.
+Shows a map with a generated path.
+"""
 
 class IndexServlet:
 	def GET(self):

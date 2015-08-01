@@ -1,5 +1,14 @@
 import datetime
 from db import Database
+"""
+Quest schedule parser. Meant to be run soley on web-tier
+
+Takes the DB in it's init.
+
+getSched(inp) takes the raw Quest text dump from a text field (textarea! Needs the linebreaks!) and puts the schedule in the DB.
+Probably should re-factor to change the name.
+
+"""
 class Quest:
 	def __init__(self,db):
 		self.db=db;

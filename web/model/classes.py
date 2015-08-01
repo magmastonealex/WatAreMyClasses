@@ -1,3 +1,8 @@
+"""
+Model for a given class, storing time, date, instructor, class details, etc.
+Returned by database.
+Should probably be taken in by Database object during Quest import, but meh.
+"""
 class WaterlooClassTime:
 	def __init__(self,ID,class_name,section,timestamp,timeend,instructor,Ctype,where):
 		self.id=ID
