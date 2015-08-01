@@ -36,4 +36,7 @@ class Database:
 			self.dbconn.commit()
 		except psycopg2.Error as e:
 			print "ERROR! "+e.pgerror
-#								#(ID,class_name,section,timestamp,timeend,instructor,type,building-room
+	def get_redis(self,key):
+		return self.red.get(key)
+	def set_redis(self,key,data):
+		return self.red.set(key,data)

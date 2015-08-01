@@ -11,7 +11,7 @@ class IndexServlet:
 		user_data = web.input(node="2016012246")
 		nd1=user_data.node
 		
-		pt = Paths()
+		pt = Paths(dbase)
 		env = Environment(loader=PackageLoader('html', ''))
 		template = env.get_template('maptest.html')
 		
