@@ -66,11 +66,11 @@ class Quest:
 								end.replace("PM","").replace(" ","")
 								h,m=end.split(":")
 								end=str(int(h)+12)+":"+m
-							timestamp="to_timestamp('"+a.replace(" ","")+" "+start.replace(" ","")+"', 'dd/mm/yyyy hh24:mi')"
-							timestamp_end="to_timestamp('"+a.replace(" ","")+" "+end.replace(" ","")+"', 'dd/mm/yyyy hh24:mi')"
+							timestamp="to_timestamp('"+a.replace(" ","")+" "+start.replace(" ","").replace("h","")+"', 'dd/mm/yyyy hh24:mi')"
+							timestamp_end="to_timestamp('"+a.replace(" ","")+" "+end.replace(" ","").replace("h","")+"', 'dd/mm/yyyy hh24:mi')"
 						else:
-							timestamp="to_timestamp('"+a.replace(" ","")+" "+start.replace(" ","")+"', 'dd/mm/yyyy hh24:mi')"
-							timestamp_end="to_timestamp('"+a.replace(" ","")+" "+end.replace(" ","")+"', 'dd/mm/yyyy hh24:mi')"
+							timestamp="to_timestamp('"+a.replace(" ","")+" "+start.replace(" ","").replace("h","")+"', 'dd/mm/yyyy hh24:mi')"
+							timestamp_end="to_timestamp('"+a.replace(" ","")+" "+end.replace(" ","").replace("h","")+"', 'dd/mm/yyyy hh24:mi')"
 						self.db.run_sql("INSERT INTO timetable (uname,building,time,time_end,cls,sec,tpe,prof) VALUES('','"+scheditem[1]+"',"+timestamp+","+timestamp_end+",'"+name+"','"+section+"','"+typ+"','"+scheditem[2]+"');") #prof
 					else:
 						print typ+" "+name
@@ -128,8 +128,8 @@ class Quest:
 									h,m=end.split(":")
 									end=str(int(h)+12)+":"+m
 							for time in class_times:
-								timestamp="to_timestamp('"+time.strftime("%d-%m-%Y")+" "+start.replace(" ","")+"', 'dd/mm/yyyy hh24:mi')"
-								timestamp_end="to_timestamp('"+time.strftime("%d-%m-%Y")+" "+end.replace(" ","")+"', 'dd/mm/yyyy hh24:mi')"
+								timestamp="to_timestamp('"+time.strftime("%d-%m-%Y")+" "+start.replace(" ","").replace("h","")+"', 'dd/mm/yyyy hh24:mi')"
+								timestamp_end="to_timestamp('"+time.strftime("%d-%m-%Y")+" "+end.replace(" ","").replace("h","")+"', 'dd/mm/yyyy hh24:mi')"
 								self.db.run_sql("INSERT INTO timetable (uname,building,time,time_end,cls,sec,tpe,prof) VALUES('','"+scheditem[1]+"',"+timestamp+","+timestamp_end+",'"+name+"','"+section+"','"+typ+"','"+scheditem[2]+"');") #prof
 
 							#more work..
