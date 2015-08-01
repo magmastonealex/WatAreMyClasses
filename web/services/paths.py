@@ -14,7 +14,7 @@ class Paths:
 	def __init__(self,db):
 		self.db=db
 	def getPath(self,u,v):
-		dbpath=db.redis_get("path:"+u+":"+v)
+		dbpath=self.db.redis_get("path:"+u+":"+v)
 		if dbpath != None:
 			return json.loads(dbpath)
 		else:
@@ -24,5 +24,5 @@ class Paths:
 			jsn=pathSock.recv(2048)
 			x=json.loads(jsn)
 			pathSock.close()
-			db.redis_set("path:"+u+":"+v,jsn)
+			self.db.redis_set("path:"+u+":"+v,jsn)
 			return x
