@@ -9,6 +9,13 @@ getNode(nodeid) # Gives node in dictinary format with lat,long,name.
 getClosest_node(ulat,ulong) # given user lat and long, returns the closest node.
 getNextClass(userid) # for a given user, get their next class.
 
+get_building_name(code) # Gives the full name of a building given it's 3-5 letter code. (RCH,SLC,MC,M3)
+
+run_sql(sql,params) # runs a query against Postgres. Takes a tuple of params. 
+					# use: db.run_sql("SELECT * from timetable where uname=%s",("me@magmastone.net",))
+					# Never use quotes!
+get_redis(key) # direct Redis getter
+set_redis(key,data) # direct Redis setter.
 """
 class Database:
 	def __init__(self):
@@ -38,5 +45,9 @@ class Database:
 			print "ERROR! "+e.pgerror
 	def get_redis(self,key):
 		return self.red.get(key)
+
 	def set_redis(self,key,data):
 		return self.red.set(key,data)
+
+	def get_building_name(self,code):
+		return self.get_redis("building:"+code) # keep it portable!
