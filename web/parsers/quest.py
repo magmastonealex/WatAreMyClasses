@@ -2,7 +2,7 @@ import datetime
 from db import Database
 class Quest:
 	def __init__(self,db):
-		self.datab=db;
+		self.db=db;
 	def getSched(self,inp):
 		ins=""
 		inp=inp.split("Select Display Option")[1]
