@@ -33,6 +33,7 @@ class Database:
 		cur = self.dbconn.cursor()
 		try:
 			cur.execute(sql,params)
-		except psycopg2.Error e:
+			self.dbconn.commit()
+		except psycopg2.Error as e:
 			print "ERROR! "+e.pgerror
 #								#(ID,class_name,section,timestamp,timeend,instructor,type,building-room
