@@ -3,7 +3,7 @@ This serves paths to the web side. It allows all of the path data to be kept in 
 without loading it into Python types from files or network, which is very slow
 Protocol:
 	- exaple in pathClient.py
-	- 1. Connect, send comma-separated two nodes
+	- 1. Connect, send comma-separated two nodes ie: nodeid1,nodeid2
 	- 2. Receive JSON array back. Array contains the nodes, in order, for the path.
 """
 
