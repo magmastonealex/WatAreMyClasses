@@ -1,2 +1,3 @@
 from pathFinder import pathFinder
 from edgeBuilder import edgeBuilder
+from pfinder_t import pathFinder_Threaded

@@ -22,8 +22,10 @@ class edgeBuilder:
 					continue
 				dist=node.latlong.distance(node2.latlong)*1000 #distance in km, conv to m
 				dist=int(dist) # Don't need sub-meter accuracy, really.
-				print dist
-				if dist < 40:
+				#print dist
+				if nID2[:2]=="b-" and dist < 40: 
+					self.nCollection.addEdge(node.id,node2.id,dist)
+				elif dist < 5:
 					self.nCollection.addEdge(node.id,node2.id,dist)
 			print node.id
 			self.q.task_done()
@@ -31,7 +33,7 @@ class edgeBuilder:
 	#Create threads, add all the nodes to the queue, and run de-duplication
 	#Also writes it's output to files.
 	def build(self):
-		for i in range(10): # Roughly falloff point of performance bell-curve on an octacore.
+		for i in range(8): # Roughly falloff point of performance bell-curve on an octacore.
 		     t = Thread(target=self.checkNode)
 		     t.daemon = True # otherwise we need to keep track of them all. Just let them die on leave.
 		     t.start()

@@ -34,7 +34,6 @@ class NodeCollection(object):
 		self.vertices[str(ID)]=Node(str(ID),*args,**kwargs)
 
 	def addEdge(self,id1,id2,length):
-		length=float(length)
 		self.vertices[str(id1)].adjacent[str(id2)] = length
 		self.vertices[str(id2)].adjacent[str(id1)] = length
 		L=sorted([str(id1),str(id2)])

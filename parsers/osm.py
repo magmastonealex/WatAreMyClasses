@@ -70,7 +70,8 @@ class osm:
 					dist=self.nCollection[point.get("ref")].latlong.distance(self.nCollection[lnode].latlong)*1000
 					dist=int(dist)# Don't need sub-meter accuracy, really.
 					self.nCollection.addEdge(point.get("ref"),lnode,dist)
-				
+					#print lnode+"-"+point.get("ref")
 				lnode=point.get("ref")
 
 			self.paths.append({"id":node.get("id"),"nodes":path})
+			print path
