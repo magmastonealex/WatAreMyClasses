@@ -80,7 +80,7 @@ class osm:
 		
 	#Collect all of the paths between buildings and around campus.
 	def collectPaths(self):
-		for node in self.root.findall('.//way/tag[@v="path"]/..')+self.root.findall('.//way/tag[@v="footway"]/..'):
+		for node in self.root.findall('.//way/tag[@v="path"]/..')+self.root.findall('.//way/tag[@v="footway"]/..'): #+self.root.findall('.//way/tag[@v="corridor"]/..'): # these are hallways.
 			path=[]
 			lnode=None
 			for point in node.findall("nd"):

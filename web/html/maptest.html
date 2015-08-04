@@ -66,31 +66,60 @@
 <div id="map-canvas"></div>
 <div class="schedudiv">
 <h4>Today's Schedule (click to navigate)</h4>
-<div class="alert alert-warning" role="alert">LEC - ECE140 - MC1085<br><p class="smtxt">8:30-10:30</p></div>
-<div class="alert alert-info" role="alert">TUT<br><p class="smtxt">8:30-10:30</p></div>
-<div class="alert alert-success" role="alert">LAB<br><p class="smtxt">8:30-10:30</p></div>
-<div class="alert alert-danger" role="alert">TST<br><p class="smtxt">8:30-10:30</p></div>
-<div class="alert alert-warning" role="alert">SEM<br><p class="smtxt">8:30-10:30</p></div>
-<div class="alert alert-danger" role="alert">TST<br><p class="smtxt">8:30-10:30</p></div>
-<div class="alert alert-warning" role="alert">SEM<br><p class="smtxt">8:30-10:30</p></div>
+{% for cls in classes %}
+<div lcloc="{{cls.lastClassLoc}}" loc="{{cls.build}}" class="cls alert alert-{{cls.col}}" role="alert">{{cls.type}} - {{cls.class_name}} - {{cls.where}}<br><p class="smtxt">{{cls.timestamp}}-{{cls.timeend}}</p></div>
+{% endfor %}
 </div>
      <script src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script type="text/javascript">
+    function removeAnnotations(){
+      for (var i = window.markers.length - 1; i >= 0; i--) {
+        map.removeLayer(window.markers[i])
+      };
+      map.removeLayer(window.firstpolyline);
+    }
+
+    function layPath(b1,b2){
+      $.getJSON("/getpath?node1="+b1+"&node2="+b2, function (data){
+        var pointList=[]
+        for (var i = 0; i < data["path"].length; i++) {
+          pointList.push(new L.LatLng(data["path"][i][1],data["path"][i][2]));
+        };
+        window.firstpolyline = new L.polyline(pointList, {
+        color: 'red',
+        weight: 3,
+        opacity: 0.5,
+        smoothFactor: 1
+        
+        });
+       firstpolyline.addTo(map);
+      });
+    }
+
     $(document).ready(function(){
-    var map = L.map('map-canvas').setView([43.471476, -80.543259], 18);
+      $(".cls").click(function(){
+        if ($(this).attr("lcloc") != $(this).attr("loc")){
+          removeAnnotations();
+          layPath($(this).attr("lcloc"),$(this).attr("loc"));
+        }else{
+          alert("Same building!");
+        }
+      });
+    window.map = L.map('map-canvas').setView([43.471476, -80.543259], 18);
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
-    {% for point in vertices %}
-    L.marker([{{ point.x }}, {{ point.y }}]).addTo(map).bindPopup("{{ point.name }}")
-    {%endfor%}
+
+    window.markers=[];
+
+
   var pointList =  [
     {% for point in path %}
     new L.LatLng({{point[0]}}, {{point[1]}}),
     {%endfor%}
     ];
-    var firstpolyline = new L.polyline(pointList, {
+    window.firstpolyline = new L.polyline(pointList, {
 color: 'red',
 weight: 3,
 opacity: 0.5,
@@ -98,6 +127,7 @@ smoothFactor: 1
 
 });
     firstpolyline.addTo(map);
+    
     });
     </script>
 
