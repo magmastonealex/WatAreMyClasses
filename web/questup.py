@@ -17,7 +17,8 @@ class QuestUploadServlet:
 		if inp["quest"] != "badquesty":
 			q=Quest(dbase)
 			q.getSched(inp["quest"],ath.getUserid())
-			return "Thanks!"
+			dbase.user_setold(ath.getUserid())
+			raise web.seeother('/web')
 		else:
 			return "Please actually submit something."
 		# redirect(CASLoginURL)

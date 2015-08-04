@@ -59,6 +59,9 @@ class Database:
 		for nextclass in rows:
 			classes.append(WaterlooClassTime(nextclass[0],nextclass[1],nextclass[3],nextclass[6],nextclass[7],nextclass[4],nextclass[2],nextclass[5]));
 		return classes
+	def user_setold(self,userid):
+		cur=self.dbconn.cursor()
+		cur.execute("UPDATE users SET users.new=0 WHERE uid=%s",(userid,))
 	def user_exists(self,userid):
 		cur=self.dbconn.cursor()
 		cur.execute("SELECT users.uid, users.token,users.new FROM users WHERE users.uid=%s",(userid,))
