@@ -16,6 +16,8 @@ run_sql(sql,params) # runs a query against Postgres. Takes a tuple of params.
 					# Never use quotes!
 get_redis(key) # direct Redis getter
 set_redis(key,data) # direct Redis setter.
+
+
 """
 class Database:
 	def __init__(self):

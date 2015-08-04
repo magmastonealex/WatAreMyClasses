@@ -31,31 +31,52 @@ class osm:
 		self.root = tree.getroot()
 	#Runs all the data-gathering methods.
 	#TODO: get a list of all buildings somewhere.
-	def runAll(self):
+	def runAll(self,buildings):
 		if self.root==None:
 			self.open()
 		self.collectNodes()
-		self.getBuilding("Engineering 3")
+		for sf,building in buildings.items():
+			self.getBuilding(building,sf)
 		self.collectPaths()
 	tempNodes={}
 	#Get all nodes using XPath from the OSM data. This isn't in usual node format because we don't know or care about neighbours/relative nodes. at this point.
 	def collectNodes(self):
-		for node in self.root.findall(".//node"):
+		for node in self.root.findall(".//node"):	
 			self.tempNodes[node.get("id")]=[float(node.get("lat")),float(node.get("lon"))]
 
 	#Get the center-point for any given building.
-	def getBuilding(self,name):
+	def getBuilding(self,name,shortnm):
 		points=[]
-		for node in self.root.findall('.//way/tag[@v="'+name+'"]/../nd'): # Find Eng3 and get boundary points
+
+		for node in self.root.findall('.//way/tag[@v="'+name.replace("'","\'").replace("&","&amp;")+'"]/../nd'): # Find Eng3 and get boundary points
 			points.append(self.tempNodes[node.get("ref")])
 		if len(points)==0:
-			return
+			for node in self.root.findall('.//way/tag[@v="'+shortnm+'"]/../nd'): # Find Eng3 and get boundary points
+				points.append(self.tempNodes[node.get("ref")])
+			if len(points)==0:
+				for node in self.root.findall('.//relation/tag[@v="'+name.replace("'","\'").replace("&","&amp;")+'"]/../member[@type="node"]'): # Find Eng3 and get boundary points
+					points.append(self.tempNodes[node.get("ref")])
+				if len(points)==0:
+					for node in self.root.findall('.//relation/tag[@v="'+shortnm+'"]/../member[@type="node"]'): # Find Eng3 and get boundary points
+						points.append(self.tempNodes[node.get("ref")])
+					if len(points)==0:
+						for node in self.root.findall('.//relation/tag[@v="'+name.replace("'","\'").replace("&","&amp;")+'"]/../nd'): # Find Eng3 and get boundary points
+							points.append(self.tempNodes[node.get("ref")])
+						if len(points)==0:
+							for node in self.root.findall('.//relation/tag[@v="'+shortnm+'"]/../nd'): # Find Eng3 and get boundary points
+								points.append(self.tempNodes[node.get("ref")])
+							if len(points)==0:
+								if name.find("Columbia Lake") ==-1 and name.find("Ron Eydt") == -1 and name.find("UW Place") == -1 and name.find("V1") == -1 and name.find("Village 1") == -1:
+									print name +" - not found!"
+								return
+#		else:
+#			print name + " - found!"
 		#Calculate a bounding box
 		xy_points = array(points)
 		hull_points = qhull2D(xy_points)
 		hull_points = hull_points[::-1]
 		(rot_angle, area, width, height, center_point, corner_points) = minBoundingRect(hull_points)
-		self.nCollection.addNode("b-"+name,center_point[0],center_point[1],name=name,latlong=LatLon(center_point[0],center_point[1]))
+		self.nCollection.addNode("b-"+shortnm,center_point[0],center_point[1],name=name,latlong=LatLon(center_point[0],center_point[1]))
 		
 	#Collect all of the paths between buildings and around campus.
 	def collectPaths(self):
@@ -74,4 +95,3 @@ class osm:
 				lnode=point.get("ref")
 
 			self.paths.append({"id":node.get("id"),"nodes":path})
-			print path
