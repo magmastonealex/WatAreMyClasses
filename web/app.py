@@ -9,7 +9,7 @@ from path_api import PathAPIServlet
 
 urls = (
 	'/', 'IndexServlet',
-	'/test', 'CASpyServlet',
+	'/login', 'CASpyServlet',
 	'/questup', 'QuestUploadServlet',
 	'/getpath',  'PathAPIServlet'
 )

@@ -1,6 +1,7 @@
 import psycopg2
 import redis
 from model import WaterlooClassTime,WebNode
+import random
 """
 Sole object for database interaction in web-tier. No need to include viewer/other class definition files.
 Methods:
@@ -19,6 +20,17 @@ set_redis(key,data) # direct Redis setter.
 
 
 """
+
+def codegenerator():
+    alphabet = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    pw_length = 64
+    mypw = ""
+
+    for i in range(pw_length):
+        next_index = random.randrange(len(alphabet))
+        mypw = mypw + alphabet[next_index]
+    return mypw
+
 class Database:
 	def __init__(self):
 		self.red = redis.Redis()
@@ -47,6 +59,29 @@ class Database:
 		for nextclass in rows:
 			classes.append(WaterlooClassTime(nextclass[0],nextclass[1],nextclass[3],nextclass[6],nextclass[7],nextclass[4],nextclass[2],nextclass[5]));
 		return classes
+	def user_exists(self,userid):
+		cur=self.dbconn.cursor()
+		cur.execute("SELECT users.uid, users.token,users.new FROM users WHERE users.uid=%s",(userid,))
+		users=cur.fetchall()
+		if len(users > 0):
+			return users[0][1],users[0][2]
+		else:
+			return False,False
+	def user_create(self,userid):
+		cur=self.dbconn.cursor()
+		key=codegenerator()
+		cur.execute("INSERT INTO users (uid,token,new) VALUES (%s,%s,1);",(userid,key,))
+		self.dbconn.commit()
+		return key
+	def verify_user(self,userid,token):
+		cur=self.dbconn.cursor()
+		cur.execute("SELECT users.token,users.uid FROM uesrs WHERE users.uid=%s AND users.token=%s",(userid,token,))
+		users=cur.fetchall()
+		if len(users > 0):
+			return True
+		else:
+			return False
+
 	def run_sql(self,sql,params):
 		cur = self.dbconn.cursor()
 		try:

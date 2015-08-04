@@ -4,6 +4,7 @@ from model import WaterlooClassTime,WebNode
 from services import Paths
 import web
 import datetime
+from services import Auth
 
 """
 Temporary Index servlet to prove the concept.
@@ -13,7 +14,12 @@ Shows a map with a generated path.
 class IndexServlet:
 	def GET(self):
 		dbase=Database()
-
+		ath=Auth(dbase)
+		if not ath.checkAuth():
+			raise web.seeother('/login')
+		tkn,new=dbase.user_exists()
+		if new == True:
+			raise web.seeother("/onboard")
 		user_data = web.input(node="2016012246")
 		nd1=user_data.node
 		
