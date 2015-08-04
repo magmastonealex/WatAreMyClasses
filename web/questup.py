@@ -18,7 +18,7 @@ class QuestUploadServlet:
 			q=Quest(dbase)
 			q.getSched(inp["quest"],ath.getUserid())
 			dbase.user_setold(ath.getUserid())
-			raise web.seeother('/web')
+			raise web.seeother('/map')
 		else:
 			return "Please actually submit something."
 		# redirect(CASLoginURL)

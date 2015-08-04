@@ -61,7 +61,8 @@ class Database:
 		return classes
 	def user_setold(self,userid):
 		cur=self.dbconn.cursor()
-		cur.execute("UPDATE users SET new=0 WHERE uid=%s",(userid,))
+		cur.execute("UPDATE users SET new=0 WHERE users.uid=%s",(userid,))
+		self.dbconn.commit()
 	def user_exists(self,userid):
 		cur=self.dbconn.cursor()
 		cur.execute("SELECT users.uid, users.token,users.new FROM users WHERE users.uid=%s",(userid,))
