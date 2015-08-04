@@ -8,7 +8,7 @@ Methods:
 getNode(nodeid) # Gives node in dictinary format with lat,long,name.
 getClosest_node(ulat,ulong) # given user lat and long, returns the closest node.
 getNextClass(userid) # for a given user, get their next class.
-
+getDayClasses(userid) # for a given user, get all the classes of the day, by time.
 get_building_name(code) # Gives the full name of a building given it's 3-5 letter code. (RCH,SLC,MC,M3)
 
 run_sql(sql,params) # runs a query against Postgres. Takes a tuple of params. 
@@ -38,6 +38,15 @@ class Database:
 		rows = cur.fetchall()
 		nextclass=rows[0]
 		return WaterlooClassTime(nextclass[0],nextclass[1],nextclass[3],nextclass[6],nextclass[7],nextclass[4],nextclass[2],nextclass[5])
+	def getDayClasses(self,userid):
+		cur = self.dbconn.cursor()
+		#cur.execute("SELECT timetable.id,timetable.cls,timetable.tpe,timetable.sec,timetable.prof,timetable.building,timetable.time,timetable.time_end FROM timetable WHERE time > TIMESTAMP 'today' AND time < TIMESTAMP 'tomorrow' ORDER BY time ASC")
+		cur.execute("SELECT timetable.id,timetable.cls,timetable.tpe,timetable.sec,timetable.prof,timetable.building,timetable.time,timetable.time_end FROM timetable WHERE time > to_timestamp('15/09/2015','dd/mm/yyyy') AND time < to_timestamp('16/09/2015','dd/mm/yyyy') ORDER BY time ASC;")
+		classes=[]
+		rows = cur.fetchall()
+		for nextclass in rows:
+			classes.append(WaterlooClassTime(nextclass[0],nextclass[1],nextclass[3],nextclass[6],nextclass[7],nextclass[4],nextclass[2],nextclass[5]));
+		return classes
 	def run_sql(self,sql,params):
 		cur = self.dbconn.cursor()
 		try:

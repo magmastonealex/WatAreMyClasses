@@ -5,11 +5,13 @@ import web
 from index import IndexServlet
 from caspy import CASpyServlet
 from questup import QuestUploadServlet
+from path_api import PathAPIServlet
 
 urls = (
 	'/', 'IndexServlet',
 	'/test', 'CASpyServlet',
 	'/questup', 'QuestUploadServlet'
+	'/getpath',  'PathAPIServlet'
 )
 
 

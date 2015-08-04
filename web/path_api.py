@@ -8,23 +8,17 @@ Temporary Index servlet to prove the concept.
 Shows a map with a generated path.
 """
 
-class IndexServlet:
+class PathAPIServlet:
 	def GET(self):
 		dbase=Database()
-
-		user_data = web.input(node="2016012246")
-		nd1=user_data.node
-		
 		pt = Paths(dbase)
-		env = Environment(loader=PackageLoader('html', ''))
-		template = env.get_template('maptest.html')
 		
-		classes=dbase.getDayClasses("")
+		user_data = web.input(node1="b-E3",node2="b-E3")
 		
 		xs=[]
 		pth=[]
-		for el in pt.getPath(nd1,"b-Engineering 3"):
+		for el in pt.getPath(user_data["node1"],user_data["node2"]):
 			node=dbase.getNode(el)
 			pth.append([node.x,node.y])
 			xs.append(node)
-		return template.render(vertices=xs,path=pth)
+		return json.dumps({"nodes":xs,"path":pth})
