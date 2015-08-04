@@ -6,9 +6,11 @@ from index import IndexServlet
 from caspy import CASpyServlet
 from questup import QuestUploadServlet
 from path_api import PathAPIServlet
+from landing import LandingServlet
 
 urls = (
-	'/', 'IndexServlet',
+	'/','LandingServlet',
+	'/map', 'IndexServlet',
 	'/login', 'CASpyServlet',
 	'/onboard', 'QuestUploadServlet',
 	'/getpath',  'PathAPIServlet'

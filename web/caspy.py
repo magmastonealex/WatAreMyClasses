@@ -22,7 +22,7 @@ class CASpyServlet:
 			web.setcookie("token",token)
 			web.setcookie("user",user)
 			web.setcookie("new",new)
-			raise web.seeother('/')
+			raise web.seeother('/map')
 		else:
 			return "Login failed!"
 		# redirect(CASLoginURL)

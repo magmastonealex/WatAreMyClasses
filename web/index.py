@@ -27,7 +27,7 @@ class IndexServlet:
 		env = Environment(loader=PackageLoader('html', ''))
 		template = env.get_template('maptest.html')
 		
-		classes=dbase.getDayClasses("")
+		classes=dbase.getDayClasses(ath.getUserid())
 		for cls in classes:
 			x=classes.index(cls)
 			if x ==0:
