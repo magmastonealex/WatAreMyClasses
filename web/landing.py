@@ -21,6 +21,6 @@ class LandingServlet:
 		if new == True:
 			raise web.seeother("/onboard")
 		env = Environment(loader=PackageLoader('html', ''))
-		template = env.get_template('index.html')
+		template = env.get_template('landing.html')
 		
 		return template.render()
