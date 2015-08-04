@@ -46,14 +46,14 @@ class Database:
 		return WebNode(closestnode[0],closestnode[2],closestnode[3],closestnode[1]) # ID, lat, long, name
 	def getNextClass(self,userid):
 		cur = self.dbconn.cursor()
-		cur.execute("SELECT timetable.id,timetable.cls,timetable.tpe,timetable.sec,timetable.prof,timetable.building,timetable.time,timetable.time_end FROM timetable WHERE time > now() ORDER BY time ASC LIMIT 1;")
+		cur.execute("SELECT timetable.id,timetable.cls,timetable.tpe,timetable.sec,timetable.prof,timetable.building,timetable.time,timetable.time_end FROM timetable WHERE uname=%s AND time > now()  ORDER BY time ASC LIMIT 1;",(userid,))
 		rows = cur.fetchall()
 		nextclass=rows[0]
 		return WaterlooClassTime(nextclass[0],nextclass[1],nextclass[3],nextclass[6],nextclass[7],nextclass[4],nextclass[2],nextclass[5])
 	def getDayClasses(self,userid):
 		cur = self.dbconn.cursor()
 		#cur.execute("SELECT timetable.id,timetable.cls,timetable.tpe,timetable.sec,timetable.prof,timetable.building,timetable.time,timetable.time_end FROM timetable WHERE time > TIMESTAMP 'today' AND time < TIMESTAMP 'tomorrow' ORDER BY time ASC")
-		cur.execute("SELECT timetable.id,timetable.cls,timetable.tpe,timetable.sec,timetable.prof,timetable.building,timetable.time,timetable.time_end FROM timetable WHERE time > to_timestamp('15/09/2015','dd/mm/yyyy') AND time < to_timestamp('16/09/2015','dd/mm/yyyy') ORDER BY time ASC;")
+		cur.execute("SELECT timetable.id,timetable.cls,timetable.tpe,timetable.sec,timetable.prof,timetable.building,timetable.time,timetable.time_end FROM timetable WHERE uname=%s AND time > to_timestamp('15/09/2015','dd/mm/yyyy') AND time < to_timestamp('16/09/2015','dd/mm/yyyy') ORDER BY time ASC;",(userid,))
 		classes=[]
 		rows = cur.fetchall()
 		for nextclass in rows:
