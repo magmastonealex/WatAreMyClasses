@@ -2,7 +2,7 @@ import web
 from jinja2 import Environment, PackageLoader
 from parsers import Quest
 from db import Database
-
+from services import Auth
 class QuestUploadServlet:
 	def GET(self):
 		env = Environment(loader=PackageLoader('html', ''))
@@ -10,10 +10,13 @@ class QuestUploadServlet:
 		return template.render()
 	def POST(self):
 		dbase=Database()
+		ath=Auth(dbase)
+		if not ath.checkAuth():
+			raise web.seeother('/')
 		inp=web.input(quest="badquesty")
 		if inp["quest"] != "badquesty":
 			q=Quest(dbase)
-			q.getSched(inp["quest"])
+			q.getSched(inp["quest"],ath.getUserid())
 			return "Thanks!"
 		else:
 			return "Please actually submit something."

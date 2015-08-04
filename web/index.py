@@ -17,7 +17,7 @@ class IndexServlet:
 		ath=Auth(dbase)
 		if not ath.checkAuth():
 			raise web.seeother('/login')
-		tkn,new=dbase.user_exists()
+		tkn,new=dbase.user_exists(ath.getUserid())
 		if new == True:
 			raise web.seeother("/onboard")
 		user_data = web.input(node="2016012246")

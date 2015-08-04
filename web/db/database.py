@@ -63,7 +63,7 @@ class Database:
 		cur=self.dbconn.cursor()
 		cur.execute("SELECT users.uid, users.token,users.new FROM users WHERE users.uid=%s",(userid,))
 		users=cur.fetchall()
-		if len(users > 0):
+		if users:
 			return users[0][1],users[0][2]
 		else:
 			return False,False
@@ -75,9 +75,9 @@ class Database:
 		return key
 	def verify_user(self,userid,token):
 		cur=self.dbconn.cursor()
-		cur.execute("SELECT users.token,users.uid FROM uesrs WHERE users.uid=%s AND users.token=%s",(userid,token,))
+		cur.execute("SELECT users.token,users.uid FROM users WHERE users.uid=%s AND users.token=%s",(userid,token,))
 		users=cur.fetchall()
-		if len(users > 0):
+		if users:
 			return True
 		else:
 			return False

@@ -11,4 +11,5 @@ class Auth:
 		else:
 			print "please login"
 			return False
-			
+	def getUserid(self):
+		return web.cookies().get("user")

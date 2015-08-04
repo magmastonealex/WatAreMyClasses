@@ -1,6 +1,6 @@
 import web
 from caslib import CASClient
-from database import Database
+from db import Database
 class CASpyServlet:
 	def GET(self):
 		cas_client = CASClient("https://cas.uwaterloo.ca/","http://ssvps.magmastone.net/login")

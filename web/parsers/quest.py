@@ -12,7 +12,7 @@ Probably should re-factor to change the name.
 class Quest:
 	def __init__(self,db):
 		self.db=db;
-	def getSched(self,inp):
+	def getSched(self,inp,uid):
 		ins=""
 		inp=inp.split("Select Display Option")[1]
 		almostclasses=inp.split("Class Nbr	Section	Component	Days & Times	Room	Instructor	Start/End Date")
@@ -81,7 +81,7 @@ class Quest:
 							timestamp="to_timestamp('"+a.replace(" ","")+" "+start.replace(" ","").replace("h","")+"', 'dd/mm/yyyy hh24:mi')"
 							timestamp_end="to_timestamp('"+a.replace(" ","")+" "+end.replace(" ","").replace("h","")+"', 'dd/mm/yyyy hh24:mi')"
 						# function passing by %s is impossible, thus the concat.
-						self.db.run_sql("INSERT INTO timetable (uname,building,time,time_end,cls,sec,tpe,prof) VALUES('',%s,"+timestamp+","+timestamp_end+",%s,%s,%s,%s);",(scheditem[1],name,section,typ,scheditem[2])) #prof
+						self.db.run_sql("INSERT INTO timetable (uname,building,time,time_end,cls,sec,tpe,prof) VALUES(%s,%s,"+timestamp+","+timestamp_end+",%s,%s,%s,%s);",(uid,scheditem[1],name,section,typ,scheditem[2])) #prof
 					else:
 						print typ+" "+name
 						#start date is on Monday (of term!), end date is on Friday.
@@ -141,7 +141,7 @@ class Quest:
 								timestamp="to_timestamp('"+time.strftime("%d-%m-%Y")+" "+start.replace(" ","").replace("h","")+"', 'dd/mm/yyyy hh24:mi')"
 								timestamp_end="to_timestamp('"+time.strftime("%d-%m-%Y")+" "+end.replace(" ","").replace("h","")+"', 'dd/mm/yyyy hh24:mi')"
 								# function passing by %s is impossible, thus the concat.
-								self.db.run_sql("INSERT INTO timetable (uname,building,time,time_end,cls,sec,tpe,prof) VALUES('',%s,"+timestamp+","+timestamp_end+",%s,%s,%s,%s);",(scheditem[1],name,section,typ,scheditem[2])) #prof
+								self.db.run_sql("INSERT INTO timetable (uname,building,time,time_end,cls,sec,tpe,prof) VALUES(%s,%s,"+timestamp+","+timestamp_end+",%s,%s,%s,%s);",(uid,scheditem[1],name,section,typ,scheditem[2])) #prof
 
 							#more work..
 		return ins
