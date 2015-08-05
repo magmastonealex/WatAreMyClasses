@@ -5,8 +5,10 @@ Quest schedule parser. Meant to be run soley on web-tier
 
 Takes the DB in it's init.
 
-getSched(inp) takes the raw Quest text dump from a text field (textarea! Needs the linebreaks!) and puts the schedule in the DB.
+getSched(inp,uid) takes the raw Quest text dump from a text field (textarea! Needs the linebreaks!) and puts the schedule in the DB.
+Attaches to the userID provided. DOES NOT CLEAR OLD SCHEDULE YET!
 Probably should re-factor to change the name.
+
 
 """
 class Quest:

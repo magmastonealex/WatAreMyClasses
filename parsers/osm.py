@@ -9,10 +9,13 @@ Scrapes data from an OpenStreetMaps XML file.
 Usage:
 
 x=osm("mapdata2.xml",nodeCollection)
-x.runAll()
+x.runAll(buildingList). - Uses a dictionary as returned by the buildingList parser.
+
+It will attempt to search for the buildings in lots of different ways. 
 
 nodeCollection now is populated with data.
 
+May want to consider adding hallways for truly shortest path, but also causes strange pathfinding problems.
 """
 class osm:
 	filename=""

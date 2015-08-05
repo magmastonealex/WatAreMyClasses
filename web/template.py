@@ -3,8 +3,12 @@ from viewer import NodeCollection,Node
 from services import Paths
 import web
 
-pt = Paths()
 
+"""
+beep,boop, please ignore.
+"""
+
+pt = Paths()
 env = Environment(loader=PackageLoader('html', ''))
 template = env.get_template('maptest.html')
 nC=NodeCollection()

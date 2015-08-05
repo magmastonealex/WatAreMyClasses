@@ -1,5 +1,8 @@
 import psycopg2
 
+"""
+beep, boop, please ignore. DB testing
+"""
 
 dbconn=psycopg2.connect("dbname='postgres' host='ssvps.magmastone.net' user='wat' password='uwaterloo'")
 

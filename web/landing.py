@@ -7,8 +7,10 @@ import datetime
 from services import Auth
 
 """
-Temporary Index servlet to prove the concept.
-Shows a map with a generated path.
+Initial homepage servlet.
+
+Source: landing.html
+Current Mapping: /
 """
 
 class LandingServlet:

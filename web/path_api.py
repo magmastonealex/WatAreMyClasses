@@ -5,8 +5,10 @@ from services import Paths
 import web
 import json
 """
-Temporary Index servlet to prove the concept.
-Shows a map with a generated path.
+First API endpoint! Call:
+/getpath?node1=nd1&node2=nd2, where nd1 and nd2 are the two nodes you want to navigate between.
+Returns a JSON dictionary with the path key, which contains an array of (nodeID,lat,long) sets.
+
 """
 
 class PathAPIServlet:

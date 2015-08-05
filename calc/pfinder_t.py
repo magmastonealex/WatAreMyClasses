@@ -7,7 +7,19 @@ import subprocess
 from viewer import NodeCollection,Node
 """
 Uses a C helper to very quickly compute the Floyd-Warshall algorthm. Takes ~ 10 mins.
-Only needed during cache-prep.
+Only needed during cache-prep
+
+Use:
+x= pathFinder_Threaded(nodeCollection) - initalize with a nodeCollection to build paths of.
+
+x.build() - Build & save it. Passing test=True prevents saving  (used in unit-tests)
+
+x.load() - Loads data. Prevents the need to call build() every time.
+
+x.findPath(nd1,nd2) - Find the most efficient path between two nodes. Returns an array of node IDs.
+
+
+
 """
 
 class pathFinder_Threaded:

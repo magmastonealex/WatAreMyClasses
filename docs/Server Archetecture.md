@@ -72,6 +72,18 @@ CREATE INDEX uname_index ON timetable USING hash(uname);
 
 ```
 
+Users schema:
+
+```
+CREATE TABLE users (
+    id varchar(50) primary key,
+    token varchar(100),
+    new int
+);
+
+```
+
+
 Install these schema by running the commands in the postgres prompt. (`sudo su postgres`, then `psql`, then c&p)
 
 Run a local dev server by simply running 

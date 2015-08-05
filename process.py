@@ -21,8 +21,10 @@ bldR.close()
 
 
 nC=NodeCollection()
-OSM=osm("mapdata.xml",nC) #Whole campus. Letsdothisthing.
-OSM.runAll()
+nC.load("out.nodecollection")
+OSM=osm("mapdata-whole.xml",nC) #Whole campus. Letsdothisthing.
+
+OSM.runAll(x.buildings)
 eB=edgeBuilder(nC)
 eB.build()
 nC.dedupe()
@@ -34,7 +36,7 @@ for nodeID,node in nC.vertices.items():
 	ndsR.write("SET 'nodes:"+nodeID+"' '"+str(node.x)+","+str(node.y)+","+node.name+"'\n")
 nds.close()
 ndsR.close()
-nC.load("out.nodecollection")
+
 
 #Only run if absolutely needed... Takes a very long time
 pF=pathFinder_Threaded(nC)

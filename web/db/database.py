@@ -12,6 +12,12 @@ getNextClass(userid) # for a given user, get their next class.
 getDayClasses(userid) # for a given user, get all the classes of the day, by time.
 get_building_name(code) # Gives the full name of a building given it's 3-5 letter code. (RCH,SLC,MC,M3)
 
+user_exists(userid) # Returns False, False if it doesn't, or the token & new status. Seems odd, but massively reduces # of queries per page load. 
+user_setold(userid) # Sets the user as having completed onboarding. 
+user_create(userid) # Create a user, return the token. Don't call this unless you're an auth method.
+verify_user(userid,token) #Check a user using userid and the user's provided token.
+
+
 run_sql(sql,params) # runs a query against Postgres. Takes a tuple of params. 
 					# use: db.run_sql("SELECT * from timetable where uname=%s",("me@magmastone.net",))
 					# Never use quotes!

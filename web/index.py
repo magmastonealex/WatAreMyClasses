@@ -7,8 +7,13 @@ import datetime
 from services import Auth
 
 """
-Temporary Index servlet to prove the concept.
-Shows a map with a generated path.
+The poorly named Map servlet.
+
+Displays the main app page with schedule, map, paths, etc.
+Uses jinja2 like all other servlets.
+
+Source: maptest.html.
+Current Mapping: /map.
 """
 
 class IndexServlet:

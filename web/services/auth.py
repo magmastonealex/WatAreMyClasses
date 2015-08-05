@@ -1,5 +1,18 @@
 import web
 
+"""
+Basic authentication class.
+Usage:
+
+x = Auth(database) - initialize with a Database object. Side note: Python needs singleton support.
+
+x.checkAuth() - Does all the work required to test if a user is authenticated already.
+!!Does NOT redirect the user back to the login page!!
+
+x.getUserid() - Convienience to return the current UserID.
+
+"""
+
 class Auth:
 	def __init__(self,dbase):
 		self.db=dbase

@@ -8,6 +8,15 @@ from questup import QuestUploadServlet
 from path_api import PathAPIServlet
 from landing import LandingServlet
 
+"""
+Main class. Code doesn't go here, but path definitions do.
+
+Syntax: '/url','ClassName'
+
+Make sure to import your class above!
+
+Usual format is to have url handlers stay in the root module.
+"""
 urls = (
 	'/','LandingServlet',
 	'/map', 'IndexServlet',

@@ -3,6 +3,16 @@ from jinja2 import Environment, PackageLoader
 from parsers import Quest
 from db import Database
 from services import Auth
+
+"""
+Deals with quest/onboarding. Walks user through adding new schedule.
+When completed correctly, redirects to /map.
+
+Note the POST/GET syntax examples.
+
+Source: quest.html
+Current Mapping: /onboard
+"""
 class QuestUploadServlet:
 	def GET(self):
 		env = Environment(loader=PackageLoader('html', ''))

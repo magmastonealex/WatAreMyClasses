@@ -1,6 +1,10 @@
 import pickle
 import os
-#Loads/calculates needed data for pathfinding.
+"""DEPRECATED!
+
+DO NOT USE THIS CLASS! pfinder_t is function-compatable but features more efficient implementations
+"""
+
 from viewer import NodeCollection,Node
 class pathFinder:
 	dist=[]
