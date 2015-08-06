@@ -64,4 +64,3 @@ class IndexServlet:
 			pth.append([node.x,node.y])
 			xs.append(node)
 		return template.render(vertices=xs,path=pth,classes=classes,qr_data=ath.getUserid()+":"+ath.getUserToken())
-		
