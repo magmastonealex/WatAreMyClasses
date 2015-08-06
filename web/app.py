@@ -5,8 +5,10 @@ import web
 from index import IndexServlet
 from caspy import CASpyServlet
 from questup import QuestUploadServlet
-from path_api import PathAPIServlet
+
 from landing import LandingServlet
+
+from api import *
 
 """
 Main class. Code doesn't go here, but path definitions do.
@@ -22,7 +24,8 @@ urls = (
 	'/map', 'IndexServlet',
 	'/login', 'CASpyServlet',
 	'/onboard', 'QuestUploadServlet',
-	'/getpath',  'PathAPIServlet'
+	'/getpath',  'PathAPIServlet',
+	'/buildinglist','BuildingListServlet'
 )
 
 
