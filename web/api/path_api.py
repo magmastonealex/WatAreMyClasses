@@ -21,6 +21,6 @@ class PathAPIServlet:
 		pth=[]
 		for el in pt.getPath(user_data["node1"],user_data["node2"]):
 			node=dbase.getNode(el)
-			pth.append([node.id,node.x,node.y])
+			pth.append({"id":node.id,"lat":node.x,"lon":node.y,"name":node.name})
 
 		return json.dumps({"path":pth})

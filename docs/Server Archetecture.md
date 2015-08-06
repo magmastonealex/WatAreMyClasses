@@ -76,7 +76,7 @@ Users schema:
 
 ```
 CREATE TABLE users (
-    id varchar(50) primary key,
+    uid varchar(50) primary key,
     token varchar(100),
     new int
 );

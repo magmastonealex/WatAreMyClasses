@@ -27,7 +27,7 @@ GetPath is used to get the fastest path between any two nodes.
 
 Returns a JSON dict in the form:
 
-`{"path":[[nodeid1,lat,long],[nodeid,lat,long],[nodeid,lat,long],[nodeid2,lat,long]]}`
+`{"path":[{"id":"b-e2","lat"10.20,"lon":-10.231,"name":"hi"}]}`
 
 Expect more keys to be added in the future.
 
@@ -96,7 +96,7 @@ GetClosestNode will return the closest nodeID to the user. Used for navigation/l
 
 JSON dict: - probably doesn't need to be, but keeping it consistant.
 
-`{"id":"nodeid"}`
+`{"id":"b-e2","lat"10.20,"lon":-10.231,"name":"hi"}`
 
 
 `/BuildingList` * GET
