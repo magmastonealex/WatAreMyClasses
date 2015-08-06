@@ -26,7 +26,8 @@ urls = (
 	'/onboard', 'QuestUploadServlet',
 	'/getpath',  'PathAPIServlet',
 	'/buildinglist','BuildingListServlet',
-	'/getclosestnode','ClosestNodeServlet'
+	'/getclosestnode','ClosestNodeServlet',
+	'/getschedule','GetScheduleServlet'
 )
 
 
