@@ -12,7 +12,9 @@ class BuildingListServlet:
 		r=redis.Redis()
 		ccheck=r.get("allblds")
 		if  ccheck != None:
+			print "cachehit"
 			return ccheck
+		print "cachemiss"
 		x=r.keys("building:*")
 		blds={}	
 		for k in x:

@@ -25,7 +25,8 @@ urls = (
 	'/login', 'CASpyServlet',
 	'/onboard', 'QuestUploadServlet',
 	'/getpath',  'PathAPIServlet',
-	'/buildinglist','BuildingListServlet'
+	'/buildinglist','BuildingListServlet',
+	'/getclosestnode','ClosestNodeServlet'
 )
 
 
