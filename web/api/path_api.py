@@ -23,4 +23,4 @@ class PathAPIServlet:
 			node=dbase.getNode(el)
 			pth.append({"id":node.id,"lat":node.x,"lon":node.y,"name":node.name})
 
-		return json.dumps({"path":pth})
+		return json.dumps(pth)

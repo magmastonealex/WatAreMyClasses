@@ -25,9 +25,9 @@ GetPath is used to get the fastest path between any two nodes.
 
 **Returns** 
 
-Returns a JSON dict in the form:
+Returns a JSON array in the form:
 
-`{"path":[{"id":"b-e2","lat"10.20,"lon":-10.231,"name":"hi"}]}`
+`[{"id":"b-e2","lat"10.20,"lon":-10.231,"name":"hi"}]`
 
 Expect more keys to be added in the future.
 
