@@ -10,7 +10,7 @@ x.checkAuth() - Does all the work required to test if a user is authenticated al
 !!Does NOT redirect the user back to the login page!!
 
 x.getUserid() - Convienience to return the current UserID.
-
+x.getUserToken() - Convienience to return current user's token
 """
 
 class Auth:
@@ -26,3 +26,5 @@ class Auth:
 			return False
 	def getUserid(self):
 		return web.cookies().get("user")
+	def getUserToken(self):
+		return web.cookies().get("token")

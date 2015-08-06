@@ -57,13 +57,33 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="/">Home</a></li>
-            <li><a href="#about">Sync Mobile App</a></li>
+            <li><a href="#about" data-toggle="modal" data-target="#qrmodal">Sync Mobile App</a></li>
             <li><a href="#contact">Upload new Schedule</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
 <div id="map-canvas"></div>
+
+<div id="qrmodal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Mobile Sign In</h4>
+      </div>
+      <div class="modal-body">
+        <p>Scan the following code with your mobile device to sign in.</p>
+        <div style="text-align:center;" id="qrcode"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
 <div class="schedudiv">
 <h4>Today's Schedule (click to navigate)</h4>
 {% for cls in classes %}
@@ -72,6 +92,8 @@
 </div>
      <script src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="/static/js/qrcode.js"></script>
+
     <script type="text/javascript">
     function removeAnnotations(){
       for (var i = window.markers.length - 1; i >= 0; i--) {
@@ -98,6 +120,9 @@
     }
 
     $(document).ready(function(){
+
+      new QRCode(document.getElementById("qrcode"), "{{qr_data}}");
+
       $(".cls").click(function(){
         if ($(this).attr("lcloc") != $(this).attr("loc")){
           removeAnnotations();
