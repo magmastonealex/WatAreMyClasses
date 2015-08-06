@@ -1,7 +1,9 @@
 from db import Database
 import web
 import json
-
+"""
+Implements /getschedule from API
+"""
 class GetScheduleServlet:
 	def GET(self):
 		dbase=Database()

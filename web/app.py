@@ -27,7 +27,8 @@ urls = (
 	'/getpath',  'PathAPIServlet',
 	'/buildinglist','BuildingListServlet',
 	'/getclosestnode','ClosestNodeServlet',
-	'/getschedule','GetScheduleServlet'
+	'/getschedule','GetScheduleServlet',
+	'/getnextclass','GetNextClassServlet'
 )
 
 
