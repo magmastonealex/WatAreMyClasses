@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Mantle/Mantle.h>
+@interface WatNode : MTLModel<MTLJSONSerializing>
 
-@interface WatNode : NSObject
 @property (nonatomic) NSString * ndid;
 @property (nonatomic) NSString * lat;
 @property (nonatomic) NSString * lon;

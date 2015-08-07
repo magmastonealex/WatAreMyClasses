@@ -8,8 +8,20 @@
 
 #import "WatClass.h"
 
-@implementation WatClass
-@synthesize id,class_name,section,timestamp,timeend,instructor,type,where;
 
+@implementation WatClass
+@synthesize cid,class_name,section,timestamp,timeend,instructor,type,where;
+
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+    return @{
+             @"cid": @"id",
+             @"class_name": @"class_name",
+             @"timestamp": @"timestamp",
+             @"timeend": @"timeend",
+             @"instructor": @"instructor",
+             @"type": @"type",
+             @"where": @"where"
+             };
+}
 
 @end

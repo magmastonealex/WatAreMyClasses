@@ -7,10 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Mantle/Mantle.h>
 
-@interface WatClass : NSObject
+@interface WatClass : MTLModel<MTLJSONSerializing>
 
-@property (nonatomic) int id;
+@property (nonatomic) NSNumber *  cid;
 @property (nonatomic) NSString * class_name;
 @property (nonatomic) NSString * section;
 @property (nonatomic) NSString * timestamp;

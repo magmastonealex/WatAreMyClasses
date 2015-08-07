@@ -1,0 +1,37 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "5B5A09D2B02FB2BE5A18C686976018A4161F446D",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "E084C86B03F81D63323C9E7510697EA528A758C7" : 0,
+    "E3F1CFC7B66794122E6D31906D72E79A4B1AAB6D" : 0,
+    "5B5A09D2B02FB2BE5A18C686976018A4161F446D" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "1B4EE3B6-7DD3-4AA2-9A88-2F8B45966EAD",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "E084C86B03F81D63323C9E7510697EA528A758C7" : "WatAreMyClasses\/iOS\/WatAreMyClasses\/Mantle\/Carthage\/Checkouts\/xcconfigs\/",
+    "E3F1CFC7B66794122E6D31906D72E79A4B1AAB6D" : "WatAreMyClasses\/iOS\/WatAreMyClasses\/Mantle\/",
+    "5B5A09D2B02FB2BE5A18C686976018A4161F446D" : "WatAreMyClasses\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "WatAreMyClasses",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 203,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "iOS\/WatAreMyClasses\/WatAreMyClasses.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:magmastonealex\/WatAreMyClasses.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "5B5A09D2B02FB2BE5A18C686976018A4161F446D"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/jspahrsummers\/xcconfigs.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "E084C86B03F81D63323C9E7510697EA528A758C7"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Mantle\/Mantle.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "E3F1CFC7B66794122E6D31906D72E79A4B1AAB6D"
+    }
+  ]
+}

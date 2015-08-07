@@ -12,5 +12,14 @@
 
 @synthesize ndid,lat,lon,name;
 
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+    // properties defined in header < : > key in JSON Dictionary
+    return @{
+             @"ndid": @"id",
+             @"lat":  @"lat",
+             @"lon": @"lon",
+             @"name": @"name",
+             };
+}
 
 @end
