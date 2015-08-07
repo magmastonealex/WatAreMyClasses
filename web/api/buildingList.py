@@ -10,6 +10,7 @@ Makes use of caching.
 class BuildingListServlet:
 	def GET(self):
 		r=redis.Redis()
+		web.header("Content-Type","application/json")
 		ccheck=r.get("allblds")
 		if  ccheck != None:
 			print "cachehit"
@@ -21,4 +22,5 @@ class BuildingListServlet:
 			blds[k]=r.get(k)
 		ret=json.dumps(blds)
 		r.set("allblds",ret)
+
 		return ret

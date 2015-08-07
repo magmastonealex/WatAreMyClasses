@@ -11,4 +11,5 @@ class ClosestNodeServlet:
 		dbase=Database()
 		inp=web.input()
 		nd=dbase.getClosestNode(inp.lat,inp.lon)
+		web.header("Content-Type","application/json")
 		return '{"id":"'+str(nd.id)+'","lat":"'+str(nd.lat)+'","lon":"'+str(nd.lon)+'","name":"'+str(nd.name)+'"}'
