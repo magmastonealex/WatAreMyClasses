@@ -7,7 +7,7 @@
 //
 
 #import "WatBuilding.h"
-
+//Basic container for a Building.
 @implementation WatBuilding
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     // properties defined in header < : > key in JSON Dictionary

@@ -20,10 +20,17 @@
     // Override point for customization after application launch.
     
     WatService *serv = [[WatService alloc] init];
+    //Single value example
     [serv getClosestNodeWithLat:43.725632  lon:-79.791397 completion:^(OVCResponse *resp, NSError *error) {
         WatNode *nd = resp.result;
-        NSLog(@"Node ID found: %@", nd.ndid);
+        NSLog(@"Closest Node: %@",nd.ndid);
     }];
+    //Array example
+    [serv getBuildings:^(OVCResponse *resp, NSError *error) {
+        NSArray * allBulds=resp.result;
+        
+    }];
+    
     
     return YES;
 }

@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <Mantle/Mantle.h>
+
+//Basic container for a Node
+
 @interface WatNode : MTLModel<MTLJSONSerializing>
 
 @property (nonatomic) NSString * ndid;

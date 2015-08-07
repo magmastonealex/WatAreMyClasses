@@ -7,7 +7,7 @@
 //
 
 #import <Overcoat/Overcoat.h>
-
+//Basic abstraction/mapping object for Overcoat.
 @interface NetworkManager : OVCHTTPSessionManager
 
 @end
