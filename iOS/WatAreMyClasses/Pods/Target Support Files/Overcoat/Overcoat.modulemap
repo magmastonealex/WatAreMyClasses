@@ -1,0 +1,8 @@
+framework module Overcoat {
+  umbrella header "Overcoat-umbrella.h"
+
+  export *
+  module * { export * }
+
+  private header "OVCHTTPManager_Internal.h"
+}

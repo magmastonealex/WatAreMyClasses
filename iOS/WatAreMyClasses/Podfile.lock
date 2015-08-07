@@ -1,0 +1,40 @@
+PODS:
+  - AFNetworking (2.5.4):
+    - AFNetworking/NSURLConnection (= 2.5.4)
+    - AFNetworking/NSURLSession (= 2.5.4)
+    - AFNetworking/Reachability (= 2.5.4)
+    - AFNetworking/Security (= 2.5.4)
+    - AFNetworking/Serialization (= 2.5.4)
+    - AFNetworking/UIKit (= 2.5.4)
+  - AFNetworking/NSURLConnection (2.5.4):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.5.4):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.5.4)
+  - AFNetworking/Security (2.5.4)
+  - AFNetworking/Serialization (2.5.4)
+  - AFNetworking/UIKit (2.5.4):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+  - Mantle (2.0.3):
+    - Mantle/extobjc (= 2.0.3)
+  - Mantle/extobjc (2.0.3)
+  - Overcoat (3.0.0):
+    - Overcoat/Core (= 3.0.0)
+  - Overcoat/Core (3.0.0):
+    - AFNetworking (~> 2.5)
+    - Mantle (<= 3.0)
+
+DEPENDENCIES:
+  - Overcoat (~> 3.0)
+
+SPEC CHECKSUMS:
+  AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
+  Mantle: 8d6b14979a082a9ed4994463eb7a4ff576c94632
+  Overcoat: 7d1351d01d762fd3618cbeca76d18e53e522f365
+
+COCOAPODS: 0.38.2

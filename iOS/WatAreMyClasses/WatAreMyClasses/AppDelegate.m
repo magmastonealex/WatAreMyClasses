@@ -7,7 +7,8 @@
 //
 
 #import "AppDelegate.h"
-
+#import "WatService.h"
+#import "WatNode.h"
 @interface AppDelegate ()
 
 @end
@@ -17,6 +18,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    WatService *serv = [[WatService alloc] init];
+    [serv getClosestNodeWithLat:43.725632  lon:-79.791397 completion:^(OVCResponse *resp, NSError *error) {
+        WatNode *nd = resp.result;
+        NSLog(@"Node ID found: %@", nd.ndid);
+    }];
+    
     return YES;
 }
 
