@@ -17,4 +17,5 @@ class GetScheduleServlet:
 			cls.timestamp=cls.timestamp.strftime("%H:%M %m/%d/%Y") # JSON friendly date formats.
 			cls.timeend=cls.timeend.strftime("%H:%M %m/%d/%Y")
 			dclass.append({"id":cls.id,"class_name":cls.class_name,"section":cls.section,"timestamp":cls.timestamp,"timeend":cls.timeend,"instructor":cls.instructor,"type":cls.type,"where":cls.where})
+		web.header("Content-Type","application/json")
 		return json.dumps(dclass)
