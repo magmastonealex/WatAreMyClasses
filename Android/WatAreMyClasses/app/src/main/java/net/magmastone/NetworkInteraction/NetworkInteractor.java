@@ -4,6 +4,15 @@ import retrofit.RestAdapter;
 
 /**
  * Created by alex on 8/6/15.
+ *
+ * This is a basic class to allow access to the webservice.
+ *
+ * Usage boils down to:
+ *
+ * ni= new NetworkInteractor()
+ *
+ * ni.webservice.yourmethod() - remember the Callback here! Android Studio/Eclipse will autocomplete a basic version.
+ *
  */
 public class NetworkInteractor {
     public WatService webservice;

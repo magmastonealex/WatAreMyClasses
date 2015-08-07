@@ -4,15 +4,17 @@ import org.parceler.Parcel;
 
 /**
  * Created by alex on 8/6/15.
+ *
+ * This represents a single class returned by the API.
  */
 @Parcel
 public class WatClass {
-    int id;
-    String class_name;
-    String section;
-    String timestamp;
-    String timeend;
-    String instructor;
-    String type;
-    String where;
+    public  int id;
+    public String class_name;
+    public String section;
+    public  String timestamp;
+    public String timeend;
+    public String instructor;
+    public  String type;
+    public  String where;
 }
