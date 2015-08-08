@@ -10,7 +10,7 @@
 #import "WatBuilding.h"
 #import "WatClass.h"
 #import "WatNode.h"
-
+//Basic abstraction/mapping object for Overcoat.
 @implementation NetworkManager
 
 + (NSDictionary *)modelClassesByResourcePath {

@@ -7,6 +7,7 @@
 //
 
 #import "WatNode.h"
+//Basic container for a Node
 
 @implementation WatNode
 

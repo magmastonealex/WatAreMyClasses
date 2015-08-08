@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <Mantle/Mantle.h>
-
+//Basic container for a Building
 @interface WatBuilding : MTLModel<MTLJSONSerializing>
 @property (nonatomic) NSString * name;
 @property (nonatomic) NSString * bid;

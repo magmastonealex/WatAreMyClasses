@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <Mantle/Mantle.h>
-
+//This is a basic container that represents a single class.
 @interface WatClass : MTLModel<MTLJSONSerializing>
 
 @property (nonatomic) NSNumber *  cid;

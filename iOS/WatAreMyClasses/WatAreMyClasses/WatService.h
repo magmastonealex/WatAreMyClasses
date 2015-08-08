@@ -11,6 +11,9 @@
 
 @interface WatService : NSObject
 -(id)init;
-- (void) getClosestNodeWithLat:(float) lat lon:(float) lon completion:(void (^) (OVCResponse *resp, NSError *error))complete;
-
+- (void) getClosestNodeWithLat:(double) lat lon:(double) lon completion:(void (^) (OVCResponse *resp, NSError *error))complete;
+-(void) getPathFromNode:(NSString*)node1 toNode:(NSString*)node2 completion:(void (^) (OVCResponse *resp, NSError *error))complete;
+-(void)getScheduleforUser:(NSString*)userID andToken:(NSString*)token completion:(void (^) (OVCResponse *resp, NSError *error))complete;
+-(void)getNextClassForUser:(NSString*)userID andToken:(NSString*)token completion:(void (^) (OVCResponse *resp, NSError *error))complete;
+-(void)getBuildings:(void (^) (OVCResponse *resp, NSError *error))complete;
 @end
