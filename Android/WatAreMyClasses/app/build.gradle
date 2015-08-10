@@ -10,6 +10,7 @@ android {
         targetSdkVersion 21
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -34,4 +35,6 @@ dependencies {
     compile 'com.squareup.retrofit:retrofit:1.9.0'
     compile 'com.google.code.gson:gson:2.2.2'
     compile 'org.parceler:parceler:0.2.15'
+    compile 'com.google.android.gms:play-services-maps:7.5.0'
+    compile 'com.google.android.gms:play-services-location:7.5.0'
 }

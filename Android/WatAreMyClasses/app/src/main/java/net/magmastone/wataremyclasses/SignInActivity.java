@@ -16,6 +16,7 @@ import com.google.zxing.integration.android.IntentResult;
 
 import net.magmastone.NetworkInteraction.Models.WatNode;
 import net.magmastone.NetworkInteraction.NetworkInteractor;
+import net.magmastone.Storage.TokenStorage;
 
 import retrofit.Callback;
 import retrofit.RetrofitError;
@@ -26,12 +27,18 @@ public class SignInActivity extends ActionBarActivity {
     private Activity ourActivity;
     private NetworkInteractor ni;
     private TextView helloTextView;
+    private TokenStorage tS;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         ourActivity=this; //Saved for button calbacks.
         setContentView(R.layout.activity_sign_in); // Set our view as defined in XML.
+        tS = new TokenStorage(this);
+        if(tS.hasLoggedIn()){
+            startActivity(new Intent(this, MapActivity.class));
+            finish();
+        }
 
         //Get the required elements to make our view interactive
         Button btn = (Button) findViewById(R.id.scanButton); // Scan button to scan a barcode.
@@ -87,7 +94,12 @@ public class SignInActivity extends ActionBarActivity {
             TextView tvUserID=(TextView)findViewById(R.id.uid);
             IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent); // Check if it's from Zxing or our own...
             if (scanResult != null) {
-                tvUserID.setText(scanResult.getContents()); // Set the UserID text to the barcode contents.
+                String res= scanResult.getContents(); // Set the UserID text to the barcode contents.
+                String[] uidtoken=res.split(":");
+                tS.setToken(uidtoken[0],uidtoken[1]);
+                Log.d("SignInActivity","User logged in with token: "+uidtoken[0]+":"+uidtoken[1]);
+                startActivity(new Intent(this, MapActivity.class));
+                finish();
             }
     }
 
