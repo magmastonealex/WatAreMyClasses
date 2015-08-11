@@ -56,9 +56,9 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 /*
-This needs a LOT of refactoring work. At this point it's not even worth documenting.
+This ideally could use some refactoring work.
 
-Grew from just Map into literally all the application logic.
+Grew from just Map into literally all the application logic + data input + navigation.
 
 Major things:
     - Location stuff should probably be abstracted into another class, with a simple callback for new bearing availablity.
@@ -103,6 +103,12 @@ public class MapActivity extends ActionBarActivity implements OnMapReadyCallback
 
 
     }
+
+    /*
+
+    Sensor Things
+
+    */
     @Override
     public final void onAccuracyChanged(Sensor sensor, int accuracy) {
         // Do something here if sensor accuracy changes.
@@ -110,9 +116,7 @@ public class MapActivity extends ActionBarActivity implements OnMapReadyCallback
 
     @Override
     public final void onSensorChanged(SensorEvent event) {
-        // The light sensor returns a single value.
-        // Many sensors return 3 values, one for each axis.
-        // Do something with this sensor value.
+        //Do some rather overly-complicated math to get True north bearing from a Rotation Vector sensor (which is relative to Magnetic north)
         if(event.sensor.getType() == Sensor.TYPE_ROTATION_VECTOR) {
             SensorManager.getRotationMatrixFromVector(
                     mRotationMatrix , event.values);
@@ -123,6 +127,40 @@ public class MapActivity extends ActionBarActivity implements OnMapReadyCallback
             updateCamera(bearing);
         }
     }
+
+
+    protected void startLocationUpdates() { //Called on onResume, as well as when it all starts.
+        LocationRequest mLocationRequest = new LocationRequest();
+        mLocationRequest.setInterval(10000); // Not particularly frequent. MapView has it's own update rate. This is only really required to figure out the declination for True North calculations.
+        mLocationRequest.setFastestInterval(2000);
+        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY); // Still need high accuracy. plus, higher accuracy means higher accuracy for closest node calculations.
+        LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient,mLocationRequest,this); //Begin.
+    }
+    private void stopLocationUpdates(){ // Called on onPause
+        LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient,this); //Stop while activity is in background.
+    }
+    //What to do when we get new lat/lon.
+    @Override
+    public void onLocationChanged(Location location) {
+        GeomagneticField field = new GeomagneticField( //Let Google do the math :)
+                (float)location.getLatitude(),
+                (float)location.getLongitude(),
+                (float)location.getAltitude(),
+                System.currentTimeMillis()
+        );
+
+        // getDeclination returns degrees
+        mDeclination = field.getDeclination(); // Saved for reference when compass is used to rotate map.
+
+    }
+
+    @Override
+    public void onConnectionSuspended(int arg0) {
+        mGoogleApiClient.connect();
+    } // Shouldn't ever happen. Still does.
+
+
+    //Update camera on bearing change
     private void updateCamera(float bearing) {
         CameraPosition oldPos = map.getCameraPosition();
 
@@ -130,6 +168,12 @@ public class MapActivity extends ActionBarActivity implements OnMapReadyCallback
 
         map.moveCamera(CameraUpdateFactory.newCameraPosition(pos));
     }
+
+    /*
+
+    Google API things
+
+    */
     @Override
     public void onConnectionFailed(ConnectionResult result) {
         Log.i("MapActivity", "Connection failed: ConnectionResult.getErrorCode() = "
@@ -137,18 +181,49 @@ public class MapActivity extends ActionBarActivity implements OnMapReadyCallback
     }
 
     @Override
-    public void onConnected(Bundle arg0) {
+    public void onConnected(Bundle arg0) { //App is licenced, our API key is valid, we're clear for launch.
         startLocationUpdates();
-
-        this.setPathFromClosestToNode("b-SLC");
+        this.setPathFromClosestToNode("b-SLC"); // Just for debug for now.
     }
+
+
+
+
+
+
+
+    /*
+
+
+    Map Things
+
+
+     */
+    @Override
+    public void onMapReady(GoogleMap lmap) {
+        map=lmap;
+        // Add a marker in Sydney, Australia, and move the camera.
+        map.getUiSettings().setCompassEnabled(true);
+        map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+        map.setMyLocationEnabled(true);
+        LatLng sydney = new LatLng(43.471203, -80.543238);
+        map.moveCamera(CameraUpdateFactory.newCameraPosition(
+                CameraPosition.builder().target(sydney)
+                        .zoom(18)
+                        .tilt(80)
+                        .build()));
+
+
+    }
+
+    //Set path from current location to given node, wiping out old PolyLine.
     private void setPathFromClosestToNode(final String to){
         Location lastLoc = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
         ni.webservice.getClosestNode(String.valueOf(lastLoc.getLatitude()),String.valueOf(lastLoc.getLongitude()), new Callback<WatNode>() {
             @Override
             public void success(WatNode watNode, Response response) {
                 Log.d("MapActivity","Found closest node: "+watNode.id);
-                pathWithClosestNode(watNode,to);
+                ni.webservice.getPath(watNode.id, to, pathCback);
             }
 
             @Override
@@ -158,6 +233,7 @@ public class MapActivity extends ActionBarActivity implements OnMapReadyCallback
         });
     }
 
+    //Every time we get a list of WatNodes, it's always for a path. So this is a reusable version.
     private Callback<List<WatNode>> pathCback = new Callback<List<WatNode>>() {
         @Override
 
@@ -187,56 +263,12 @@ public class MapActivity extends ActionBarActivity implements OnMapReadyCallback
     };
 
 
-    protected  void pathWithClosestNode(WatNode node,String to){
-        ni.webservice.getPath(node.id,to,pathCback);
-    }
-    protected void startLocationUpdates() {
-        LocationRequest mLocationRequest = new LocationRequest();
-        mLocationRequest.setInterval(10000);
-        mLocationRequest.setFastestInterval(2000);
-        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient,mLocationRequest,this);
-    }
-    private void stopLocationUpdates(){
-        LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient,this);
-    }
-    @Override
-    public void onLocationChanged(Location location) {
-        GeomagneticField field = new GeomagneticField(
-                (float)location.getLatitude(),
-                (float)location.getLongitude(),
-                (float)location.getAltitude(),
-                System.currentTimeMillis()
-        );
-        // getDeclination returns degrees
-        mDeclination = field.getDeclination();
+    /*
 
-            Log.d("MapActivity", "Location update:"+String.valueOf(location.getLatitude())+", "+String.valueOf(location.getLongitude()));
-
-    }
+    General Activity housekeeping.
 
 
-    @Override
-    public void onConnectionSuspended(int arg0) {
-        mGoogleApiClient.connect();
-    }
-
-    @Override
-    public void onMapReady(GoogleMap lmap) {
-        map=lmap;
-        // Add a marker in Sydney, Australia, and move the camera.
-        map.getUiSettings().setCompassEnabled(true);
-        map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        map.setMyLocationEnabled(true);
-        LatLng sydney = new LatLng(43.471203, -80.543238);
-        map.moveCamera(CameraUpdateFactory.newCameraPosition(
-                CameraPosition.builder().target(sydney)
-                        .zoom(18)
-                        .tilt(80)
-                        .build()));
-
-
-    }
+     */
     @Override
     public void onPause(){
         super.onPause();
@@ -259,6 +291,7 @@ public class MapActivity extends ActionBarActivity implements OnMapReadyCallback
         return true;
     }
 
+    //Dispatch to other Activities
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -283,7 +316,8 @@ public class MapActivity extends ActionBarActivity implements OnMapReadyCallback
 
         return super.onOptionsItemSelected(item);
     }
-
+    //What to do when we get a result
+    //Oddly reusable...
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(resultCode==RESULT_OK && requestCode==3){
