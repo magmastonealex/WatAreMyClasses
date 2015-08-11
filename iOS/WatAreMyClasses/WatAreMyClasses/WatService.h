@@ -8,8 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import <Overcoat/Overcoat.h>
-
+#import "NetworkManager.h"
 @interface WatService : NSObject
+@property (nonatomic) NetworkManager *nm;
++ (id)sharedService;
 -(id)init;
 - (void) getClosestNodeWithLat:(double) lat lon:(double) lon completion:(void (^) (OVCResponse *resp, NSError *error))complete;
 -(void) getPathFromNode:(NSString*)node1 toNode:(NSString*)node2 completion:(void (^) (OVCResponse *resp, NSError *error))complete;

@@ -3,4 +3,5 @@ use_frameworks!
 
 target 'WatAreMyClasses' do
   pod 'Overcoat', '~> 3.0'
+  pod 'GoogleMaps'
 end

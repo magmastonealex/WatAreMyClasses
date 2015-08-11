@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "WatService.h"
 #import "WatNode.h"
+@import GoogleMaps;
+
 @interface AppDelegate ()
 
 @end
@@ -18,6 +20,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [GMSServices provideAPIKey:@"AIzaSyANOLtR9yMGFcquqC0M6BvlUMTmgLUwoX4"]; // Google API key
+    
     
     WatService *serv = [[WatService alloc] init];
     //Single value example

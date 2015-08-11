@@ -12,8 +12,16 @@
 #import "WatBuilding.h"
 #import "NetworkManager.h"
 @implementation WatService
-NetworkManager *nm; // This is our abstractor class.
-
+ // This is our abstractor class.
+@synthesize nm;
++ (id)sharedService {
+    static WatService *sharedService = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedService = [[self alloc] init];
+    });
+    return sharedService;
+}
 -(id) init{
     self=[super init];
     if (self){
