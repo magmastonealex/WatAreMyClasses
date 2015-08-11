@@ -48,6 +48,10 @@
             android:name=".BuildingList"
             android:label="@string/title_activity_building_list" >
         </activity>
+        <activity
+            android:name=".ScheduleViewActivity"
+            android:label="@string/title_activity_schedule_view" >
+        </activity>
     </application>
 
 </manifest>

@@ -34,6 +34,7 @@ import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 
 import net.magmastone.NetworkInteraction.Models.WatBuilding;
+import net.magmastone.NetworkInteraction.Models.WatClass;
 import net.magmastone.NetworkInteraction.Models.WatNode;
 import net.magmastone.NetworkInteraction.NetworkInteractor;
 import net.magmastone.Storage.OfflineCacher;
@@ -63,6 +64,7 @@ public class MapActivity extends ActionBarActivity implements OnMapReadyCallback
     private GoogleMap map;
     private NetworkInteractor ni;
     private OfflineCacher oC;
+    private Polyline lne;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -125,46 +127,55 @@ public class MapActivity extends ActionBarActivity implements OnMapReadyCallback
     public void onConnected(Bundle arg0) {
         startLocationUpdates();
 
+        this.setPathFromClosestToNode("b-SLC");
+    }
+    private void setPathFromClosestToNode(final String to){
         Location lastLoc = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
         ni.webservice.getClosestNode(String.valueOf(lastLoc.getLatitude()),String.valueOf(lastLoc.getLongitude()), new Callback<WatNode>() {
             @Override
             public void success(WatNode watNode, Response response) {
                 Log.d("MapActivity","Found closest node: "+watNode.id);
-                pathWithClosestNode(watNode);
+                pathWithClosestNode(watNode,to);
             }
 
             @Override
             public void failure(RetrofitError error) {
-                   Log.e("MapActivity","Failed to find closest node");
+                Log.e("MapActivity","Failed to find closest node");
             }
         });
-        // Once connected with google api, get the location
-
     }
-    protected  void pathWithClosestNode(WatNode node){
-        ni.webservice.getPath(node.id,"b-SLC",new Callback<List<WatNode>>() {
-            @Override
 
-            public void success(List<WatNode> watNodes, Response response) {
-                Log.d("MapActivity","Found path!");
-                ArrayList<LatLng> points=new ArrayList<LatLng>();
-                for(WatNode nde : watNodes){
-                    Log.d("MapActivity","Node:"+nde.id);
-                    points.add(new LatLng(Double.valueOf(nde.lat),Double.valueOf(nde.lon)));
-                }
+    private Callback<List<WatNode>> pathCback = new Callback<List<WatNode>>() {
+        @Override
 
-                Polyline lne=map.addPolyline(new PolylineOptions()
-                .width(10)
-                .color(Color.RED)
-                );
-                lne.setPoints(points);
+        public void success(List<WatNode> watNodes, Response response) {
+            Log.d("MapActivity","Found path!");
+            ArrayList<LatLng> points=new ArrayList<LatLng>();
+            for(WatNode nde : watNodes){
+                Log.d("MapActivity","Node:"+nde.id);
+                points.add(new LatLng(Double.valueOf(nde.lat),Double.valueOf(nde.lon)));
             }
-
-            @Override
-            public void failure(RetrofitError error) {
-                Log.e("MapActivity","Error getting path!: "+error.getLocalizedMessage());
+            if(lne != null) {
+                lne.remove();
             }
-        });
+            lne=map.addPolyline(new PolylineOptions()
+                            .width(10)
+                            .color(Color.RED)
+            );
+            lne.setPoints(points);
+
+
+        }
+
+        @Override
+        public void failure(RetrofitError error) {
+            Log.e("MapActivity","Error getting path!: "+error.getLocalizedMessage());
+        }
+    };
+
+
+    protected  void pathWithClosestNode(WatNode node,String to){
+        ni.webservice.getPath(node.id,to,pathCback);
     }
     protected void startLocationUpdates() {
         LocationRequest mLocationRequest = new LocationRequest();
@@ -245,13 +256,26 @@ public class MapActivity extends ActionBarActivity implements OnMapReadyCallback
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_buildings) {
             Intent intent = new Intent(this,BuildingList.class);
-            ArrayList<WatBuilding> builds=new ArrayList<WatBuilding>(oC.buildings);
+            ArrayList<WatBuilding> builds=new ArrayList<>(oC.buildings);
 
             intent.putExtra("buildings",builds);
-            startActivity(intent);
+            startActivityForResult(intent,3);
             return true;
+        }else if (id == R.id.action_classes){
+            Intent intent = new Intent(this,ScheduleViewActivity.class);
+            ArrayList<WatClass> builds=new ArrayList<>(oC.todayClasses);
+            intent.putExtra("classes",builds);
+            startActivityForResult(intent,3);
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode==RESULT_OK && requestCode==3){
+            String nodeID= data.getStringExtra("nodeID");
+            this.setPathFromClosestToNode(nodeID);
+        }
     }
 }

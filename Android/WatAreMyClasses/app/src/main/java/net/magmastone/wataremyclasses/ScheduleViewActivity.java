@@ -14,7 +14,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import net.magmastone.NetworkInteraction.Models.WatBuilding;
+import net.magmastone.NetworkInteraction.Models.WatClass;
 import net.magmastone.wataremyclasses.adapters.BuildingArrayAdapter;
+import net.magmastone.wataremyclasses.adapters.SchedArrayAdapter;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -22,7 +24,7 @@ import java.util.HashMap;
 import java.util.List;
 
 
-public class BuildingList extends ActionBarActivity {
+public class ScheduleViewActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,25 +33,26 @@ public class BuildingList extends ActionBarActivity {
 
         final ListView listview = (ListView) findViewById(R.id.listview);
         Intent intent = getIntent();
-        ArrayList<WatBuilding> wb= intent.getParcelableArrayListExtra("buildings");
-        Log.d("BAA", wb.get(0).name);
-        final WatBuilding[] arrayWatBuilding = wb.toArray(new WatBuilding[wb.size()]);
-        BuildingArrayAdapter baa = new BuildingArrayAdapter(this,arrayWatBuilding);
+        ArrayList<WatClass> wb= intent.getParcelableArrayListExtra("classes");
+        Log.d("BAA", wb.get(0).class_name);
+        final WatClass[] arrayWatClass = wb.toArray(new WatClass[wb.size()]);
+        SchedArrayAdapter baa = new SchedArrayAdapter(this,arrayWatClass);
         listview.setAdapter(baa);
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                finishWithBuilding("b-"+arrayWatBuilding[position].id); //Turn it into a node ID
+                String loc=arrayWatClass[position].where.split(" ")[0];
+                finishWithBuilding("b-"+loc); //Turn it into a node ID
             }
         });
-        }
+    }
 
-        private void finishWithBuilding(String bID){
-            Intent inte = new Intent();
-            inte.putExtra("nodeID",bID);
-            setResult(RESULT_OK,inte);
-            finish();
-        }
+    private void finishWithBuilding(String bID){
+        Intent inte = new Intent();
+        inte.putExtra("nodeID",bID);
+        setResult(RESULT_OK,inte);
+        finish();
+    }
 
 
 
