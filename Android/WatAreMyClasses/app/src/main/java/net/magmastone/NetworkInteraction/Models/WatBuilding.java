@@ -7,6 +7,8 @@ import android.os.Parcelable;
  * Created by alex on 8/6/15.
  *
  * This represents a single building as returned by the API.
+ *
+ * Supports the Parcel API to make it simpler to pass into other Activities using Intents.
  */
 public class WatBuilding implements Parcelable{
     public  String name;

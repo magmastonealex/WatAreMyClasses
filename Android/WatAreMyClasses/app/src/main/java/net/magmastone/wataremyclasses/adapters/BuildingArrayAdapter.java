@@ -14,6 +14,10 @@ import net.magmastone.wataremyclasses.R;
 
 /**
  * Created by alex on 8/10/15.
+ *
+ * Turns an array of Buildings into something a ListView can display.
+ *
+ * Expects a simple array as input.
  */
 public class BuildingArrayAdapter extends ArrayAdapter<WatBuilding> {
     private final Context context;

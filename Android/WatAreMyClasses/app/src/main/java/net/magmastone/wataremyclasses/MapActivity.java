@@ -55,7 +55,20 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
+/*
+This needs a LOT of refactoring work. At this point it's not even worth documenting.
 
+Grew from just Map into literally all the application logic.
+
+Major things:
+    - Location stuff should probably be abstracted into another class, with a simple callback for new bearing availablity.
+    - Generating Polylines (or even just generating LatLngs) from two nodes should be in another class.
+    - Closest node should be abstracted away.
+
+Minor things:
+    - Need to check if user skipped before showing Schedule view activity. May be able to get away with a simple Toast.
+
+ */
 public class MapActivity extends ActionBarActivity implements OnMapReadyCallback,GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener,SensorEventListener {
     private SensorManager mSensorManager;
     private GoogleApiClient mGoogleApiClient;

@@ -13,15 +13,24 @@ import retrofit.client.Response;
 
 /**
  * Created by alex on 8/10/15.
+ *
+ * This caches the BuildingList and the day's schedule.
+ *
+ * Intended to be run once per application run. Downloads the most recent list of buildings, and schedule.
+ * Public properties can be passed into other classes instead of having to manually fetch each time.
+ *
+ *
  */
 public class OfflineCacher {
         private boolean unauth=false;
         private String uid, token;
         private NetworkInteractor ni;
 
-        public List<WatClass> todayClasses;
-        public HashMap<String, String> buildingshm;
-        public List<WatBuilding> buildings;
+        public List<WatClass> todayClasses; // List of all classes for today
+        public HashMap<String, String> buildingshm; // HashMap to look up a name from a building ID.
+        public List<WatBuilding> buildings; // List of all (navigable) buildings on campus.
+
+
         public OfflineCacher(String userID, String Ltoken,NetworkInteractor lni){
            if (userID==null){
                unauth=true;

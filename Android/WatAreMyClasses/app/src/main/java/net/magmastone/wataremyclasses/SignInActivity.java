@@ -22,7 +22,16 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
+/*
+Simple QR signin activity.
 
+Need to style, remove TextViews, and add some functionality to the Skip button.
+
+Handles scanning a QR code (should probably be abstracted away), storing it using TokenStorage, and moving the user on.
+
+Moves user over to MapActivity.
+
+ */
 public class SignInActivity extends ActionBarActivity {
     private Activity ourActivity;
     private NetworkInteractor ni;

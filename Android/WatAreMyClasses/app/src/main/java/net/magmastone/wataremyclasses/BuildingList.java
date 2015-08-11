@@ -21,6 +21,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+/*
+
+Very simple activity to display the list of buildings on campus, and return the ID of the selected one back.
+
+Expects an Intent that contains an ArrayList of buildings under the key "buildings"
+Will return the building node ID that was selected.
+*/
 
 public class BuildingList extends ActionBarActivity {
 

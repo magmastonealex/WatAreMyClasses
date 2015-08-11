@@ -8,6 +8,8 @@ import android.os.Parcel;
  * Created by alex on 8/6/15.
  *
  * This represents a single class returned by the API.
+ *
+ * Supports the Parcel API to make it simpler to pass into other Activities using Intents.
  */
 
 public class WatClass implements Parcelable {

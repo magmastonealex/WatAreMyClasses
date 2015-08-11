@@ -2,6 +2,12 @@ package net.magmastone.wataremyclasses.adapters;
 
 /**
  * Created by alex on 8/10/15.
+ *
+ * Turns an array of WatClasses into something that a ListView can use.
+ *
+ * Expects a simple array of WatClasses as input.
+ *
+ * Should probably do am/pm stuff, but oh well.
  */
 
 import android.content.Context;
