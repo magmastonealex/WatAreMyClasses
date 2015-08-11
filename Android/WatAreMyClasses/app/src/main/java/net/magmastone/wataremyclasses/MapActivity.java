@@ -1,6 +1,7 @@
 package net.magmastone.wataremyclasses;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.hardware.GeomagneticField;
 import android.hardware.Sensor;
@@ -9,6 +10,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.location.Location;
 import android.net.Network;
+import android.os.Parcel;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -31,8 +33,11 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 
+import net.magmastone.NetworkInteraction.Models.WatBuilding;
 import net.magmastone.NetworkInteraction.Models.WatNode;
 import net.magmastone.NetworkInteraction.NetworkInteractor;
+import net.magmastone.Storage.OfflineCacher;
+import net.magmastone.Storage.TokenStorage;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -57,6 +62,7 @@ public class MapActivity extends ActionBarActivity implements OnMapReadyCallback
     private float mDeclination;
     private GoogleMap map;
     private NetworkInteractor ni;
+    private OfflineCacher oC;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,6 +82,9 @@ public class MapActivity extends ActionBarActivity implements OnMapReadyCallback
        // mSensorManager.registerListener(this, rotSense, 400000);
 
         ni = new NetworkInteractor();
+        TokenStorage tS = new TokenStorage(this);
+        oC=new OfflineCacher(tS.getUserID(),tS.getToken(),ni);
+        oC.doCache();
 
 
     }
@@ -214,6 +223,7 @@ public class MapActivity extends ActionBarActivity implements OnMapReadyCallback
     @Override
     public void onResume(){
         super.onResume();
+        oC.doCache();
         if(mGoogleApiClient.isConnected()){
             startLocationUpdates();
         }
@@ -233,7 +243,12 @@ public class MapActivity extends ActionBarActivity implements OnMapReadyCallback
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_buildings) {
+            Intent intent = new Intent(this,BuildingList.class);
+            ArrayList<WatBuilding> builds=new ArrayList<WatBuilding>(oC.buildings);
+
+            intent.putExtra("buildings",builds);
+            startActivity(intent);
             return true;
         }
 

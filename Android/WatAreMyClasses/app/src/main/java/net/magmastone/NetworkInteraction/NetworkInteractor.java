@@ -17,7 +17,7 @@ import retrofit.RestAdapter;
 public class NetworkInteractor {
     public WatService webservice;
     public NetworkInteractor(){
-        RestAdapter rA = new RestAdapter.Builder().setEndpoint("http://ssvps.magmastone.net:8080").build();
+        RestAdapter rA = new RestAdapter.Builder().setEndpoint("http://ssvps.magmastone.net").build();
         webservice=rA.create(WatService.class);
     }
 

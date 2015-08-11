@@ -1,9 +1,23 @@
 package net.magmastone.wataremyclasses;
 
+import android.content.Context;
+import android.content.Intent;
+import android.os.Build;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import net.magmastone.NetworkInteraction.Models.WatBuilding;
+import net.magmastone.wataremyclasses.adapters.BuildingArrayAdapter;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 
 public class BuildingList extends ActionBarActivity {
@@ -12,28 +26,16 @@ public class BuildingList extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_building_list);
+
+        final ListView listview = (ListView) findViewById(R.id.listview);
+        Intent intent = getIntent();
+        ArrayList<WatBuilding> wb= intent.getParcelableArrayListExtra("buildings");
+        Log.d("BAA", wb.get(0).name);
+        WatBuilding[] arrayWatBuilding = wb.toArray(new WatBuilding[wb.size()]);
+        BuildingArrayAdapter baa = new BuildingArrayAdapter(this,arrayWatBuilding);
+        listview.setAdapter(baa);
+
     }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_building_list, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 }
