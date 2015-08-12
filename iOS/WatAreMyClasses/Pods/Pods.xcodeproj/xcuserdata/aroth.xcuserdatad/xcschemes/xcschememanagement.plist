@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>AFNetworking.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Mantle.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Overcoat.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-WatAreMyClasses.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>QRCodeReaderViewController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>2EA142C3E5CE881A687A676DD0DB7409</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>35C60F28D82A58D6E89CBB0BF157D7BB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>47D1E726B32ABE10611797206BADA89B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>ADF3FA137371B384420D5366DF797790</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D1CF9002F0CE2636DC87D7306DAA25C7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>
