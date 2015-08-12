@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -94,7 +95,7 @@ public class MapActivity extends ActionBarActivity implements OnMapReadyCallback
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         Sensor rotSense=mSensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
 
-       // mSensorManager.registerListener(this, rotSense, 400000);
+       mSensorManager.registerListener(this, rotSense, 400000);
 
         ni = new NetworkInteractor();
         TokenStorage tS = new TokenStorage(this);
@@ -309,9 +310,14 @@ public class MapActivity extends ActionBarActivity implements OnMapReadyCallback
             return true;
         }else if (id == R.id.action_classes){
             Intent intent = new Intent(this,ScheduleViewActivity.class);
-            ArrayList<WatClass> builds=new ArrayList<>(oC.todayClasses);
-            intent.putExtra("classes",builds);
-            startActivityForResult(intent,3);
+            if(oC.todayClasses != null) {
+                ArrayList<WatClass> builds = new ArrayList<>(oC.todayClasses);
+                intent.putExtra("classes", builds);
+                startActivityForResult(intent, 3);
+            }else{
+                Toast toast = Toast.makeText(getApplicationContext(), "Schedule only available when signed in!", Toast.LENGTH_LONG); //Not avaialable.
+                toast.show();
+            }
         }
 
         return super.onOptionsItemSelected(item);
