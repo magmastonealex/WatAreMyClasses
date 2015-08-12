@@ -8,49 +8,51 @@
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>0</integer>
 		</dict>
 		<key>Mantle.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>1</integer>
 		</dict>
 		<key>Overcoat.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>2</integer>
 		</dict>
 		<key>Pods-WatAreMyClasses.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>3</integer>
+		</dict>
+		<key>QRCodeReaderViewController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>52B0050EA21907643CDB56805E587D21</key>
+		<key>2EA142C3E5CE881A687A676DD0DB7409</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7033323B58C3285E51A64C94FE8E0F77</key>
+		<key>35C60F28D82A58D6E89CBB0BF157D7BB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7E19386CD828BE166267C018CC8EA44E</key>
+		<key>47D1E726B32ABE10611797206BADA89B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E7DED5BFD553EA6C1D969A6C2E86DB53</key>
+		<key>ADF3FA137371B384420D5366DF797790</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D1CF9002F0CE2636DC87D7306DAA25C7</key>
 		<dict>
 			<key>primary</key>
 			<true/>

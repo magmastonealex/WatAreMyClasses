@@ -55,9 +55,11 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Pods-WatAreMyClasses/AFNetworking.framework'
   install_framework 'Pods-WatAreMyClasses/Mantle.framework'
   install_framework 'Pods-WatAreMyClasses/Overcoat.framework'
+  install_framework 'Pods-WatAreMyClasses/QRCodeReaderViewController.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods-WatAreMyClasses/AFNetworking.framework'
   install_framework 'Pods-WatAreMyClasses/Mantle.framework'
   install_framework 'Pods-WatAreMyClasses/Overcoat.framework'
+  install_framework 'Pods-WatAreMyClasses/QRCodeReaderViewController.framework'
 fi

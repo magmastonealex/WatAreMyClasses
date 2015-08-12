@@ -11,6 +11,8 @@
 		E3E08AB41B7A8A5E004FB7D5 /* DataCacher.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E08AB31B7A8A5E004FB7D5 /* DataCacher.m */; };
 		E3E08ABA1B7A99C6004FB7D5 /* ClassesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E08AB91B7A99C6004FB7D5 /* ClassesViewController.m */; };
 		E3E08ABD1B7AA12E004FB7D5 /* BuildingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E08ABC1B7AA12E004FB7D5 /* BuildingsViewController.m */; };
+		E3E08AC01B7BEB55004FB7D5 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E08ABF1B7BEB55004FB7D5 /* WelcomeViewController.m */; };
+		E3E08AC31B7BEF95004FB7D5 /* TokenStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E08AC21B7BEF95004FB7D5 /* TokenStorage.m */; };
 		FA5AB95E1B750CF300D36CF2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5AB95D1B750CF300D36CF2 /* main.m */; };
 		FA5AB9611B750CF300D36CF2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5AB9601B750CF300D36CF2 /* AppDelegate.m */; };
 		FA5AB9641B750CF300D36CF2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5AB9631B750CF300D36CF2 /* ViewController.m */; };
@@ -66,6 +68,10 @@
 		E3E08AB91B7A99C6004FB7D5 /* ClassesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassesViewController.m; sourceTree = "<group>"; };
 		E3E08ABB1B7AA12E004FB7D5 /* BuildingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildingsViewController.h; sourceTree = "<group>"; };
 		E3E08ABC1B7AA12E004FB7D5 /* BuildingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuildingsViewController.m; sourceTree = "<group>"; };
+		E3E08ABE1B7BEB55004FB7D5 /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
+		E3E08ABF1B7BEB55004FB7D5 /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
+		E3E08AC11B7BEF95004FB7D5 /* TokenStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TokenStorage.h; sourceTree = "<group>"; };
+		E3E08AC21B7BEF95004FB7D5 /* TokenStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TokenStorage.m; sourceTree = "<group>"; };
 		FA5AB9591B750CF200D36CF2 /* WatAreMyClasses.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatAreMyClasses.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA5AB95D1B750CF300D36CF2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FA5AB95F1B750CF300D36CF2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -178,6 +184,10 @@
 				E3E08AB91B7A99C6004FB7D5 /* ClassesViewController.m */,
 				E3E08ABB1B7AA12E004FB7D5 /* BuildingsViewController.h */,
 				E3E08ABC1B7AA12E004FB7D5 /* BuildingsViewController.m */,
+				E3E08ABE1B7BEB55004FB7D5 /* WelcomeViewController.h */,
+				E3E08ABF1B7BEB55004FB7D5 /* WelcomeViewController.m */,
+				E3E08AC11B7BEF95004FB7D5 /* TokenStorage.h */,
+				E3E08AC21B7BEF95004FB7D5 /* TokenStorage.m */,
 			);
 			path = WatAreMyClasses;
 			sourceTree = "<group>";
@@ -420,7 +430,9 @@
 				FA5AB9B51B752AF600D36CF2 /* NetworkManager.m in Sources */,
 				FA5AB9961B750EF200D36CF2 /* WatNode.m in Sources */,
 				FA5AB9641B750CF300D36CF2 /* ViewController.m in Sources */,
+				E3E08AC31B7BEF95004FB7D5 /* TokenStorage.m in Sources */,
 				FA5AB9B81B752BF000D36CF2 /* WatService.m in Sources */,
+				E3E08AC01B7BEB55004FB7D5 /* WelcomeViewController.m in Sources */,
 				E3E08ABD1B7AA12E004FB7D5 /* BuildingsViewController.m in Sources */,
 				E3E08ABA1B7A99C6004FB7D5 /* ClassesViewController.m in Sources */,
 				FA5AB9611B750CF300D36CF2 /* AppDelegate.m in Sources */,

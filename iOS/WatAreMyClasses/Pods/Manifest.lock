@@ -29,15 +29,18 @@ PODS:
   - Overcoat/Core (3.0.0):
     - AFNetworking (~> 2.5)
     - Mantle (<= 3.0)
+  - QRCodeReaderViewController (3.5.2)
 
 DEPENDENCIES:
   - GoogleMaps
   - Overcoat (~> 3.0)
+  - QRCodeReaderViewController (~> 3.5.2)
 
 SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
   GoogleMaps: ebf08677f181d9c2dcdbd1721d206f02beccc9b1
   Mantle: 8d6b14979a082a9ed4994463eb7a4ff576c94632
   Overcoat: 7d1351d01d762fd3618cbeca76d18e53e522f365
+  QRCodeReaderViewController: f20275985c41ae551099641493ab364691d9113e
 
 COCOAPODS: 0.38.2

@@ -11,6 +11,7 @@
 #import "ClassesViewController.h"
 #import "BuildingsViewController.h"
 #import "WatNode.h"
+#import "TokenStorage.h"
 @import GoogleMaps;
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet GMSMapView *mapView;
@@ -22,6 +23,7 @@ CLLocationManager * locationmanager;
 GMSPolyline * pLine;
 double curLat;
 double curLong;
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -44,8 +46,10 @@ double curLong;
     [locationmanager startUpdatingHeading];
     
     DataCacher * cache=[DataCacher sharedCache]; // Singleton to cache web-based data
-    cache.userID=@"aj3roth"; // Needs to be collected via QR code & stored in CacheManager, like in Android.
-    cache.token=@"mfGVvr3AJT9wMGYESuz5gwRcGnEwumrKTf27UARQ3MVIrOhuEnZa8llBDHL89w13"; // Hey, that's mine ! :)
+    TokenStorage *tStore=[TokenStorage sharedStorage];
+    cache.userID=tStore.userID;
+    cache.token=tStore.token;
+    NSLog(@"Using userID: %@", cache.userID);
     [cache doCache]; // Prepare the cache for when a view-controller needs it later.
 
     // Do any additional setup after loading the view, typically from a nib.
@@ -89,7 +93,11 @@ double curLong;
 {
     NSString *bid=((ClassesViewController*)unwindSegue.sourceViewController).doneGoto; //NodeID for desired building
     NSLog(@"Class: %@",bid);
+    if([bid isEqualToString:@"none"]){
+
+    }else{
     [self doPathPolyline:bid];
+    }
 }
 - (IBAction)unwindFromBuildings:(UIStoryboardSegue *)unwindSegue// Callback from BuildingsViewController
 {

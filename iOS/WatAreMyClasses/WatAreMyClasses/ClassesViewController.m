@@ -21,7 +21,15 @@
     [super viewDidLoad];
     DataCacher * sCache=[DataCacher sharedCache];
     classesArray=sCache.classes;
+    doneGoto=@"none";
+
     // Do any additional setup after loading the view.
+}
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    if (classesArray==nil){
+        [self performSegueWithIdentifier:@"ClassesLeave" sender:self];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
