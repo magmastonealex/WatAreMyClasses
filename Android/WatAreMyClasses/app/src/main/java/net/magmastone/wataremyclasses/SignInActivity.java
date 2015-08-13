@@ -90,7 +90,7 @@ public class SignInActivity extends ActionBarActivity {
                 String[] uidtoken=res.split(":");
                 tS.setToken(uidtoken[0],uidtoken[1]);
                 Log.d("SignInActivity","User logged in with token: "+uidtoken[0]+":"+uidtoken[1]);
-                startActivity(new Intent(this, MapActivity.class));
+                startActivity(new Intent(this, MapActivity.class))  ;
                 finish();
             }
     }

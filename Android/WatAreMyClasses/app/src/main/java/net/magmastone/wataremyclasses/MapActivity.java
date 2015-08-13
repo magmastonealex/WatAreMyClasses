@@ -213,6 +213,8 @@ public class MapActivity extends ActionBarActivity implements OnMapReadyCallback
                         .zoom(18)
                         .tilt(80)
                         .build()));
+        map.getUiSettings().setZoomControlsEnabled(false);
+        map.getUiSettings().setZoomGesturesEnabled(false);
 
 
     }
