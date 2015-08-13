@@ -105,8 +105,8 @@
     function layPath(b1,b2){
       $.getJSON("/getpath?node1="+b1+"&node2="+b2, function (data){
         var pointList=[]
-        for (var i = 0; i < data["path"].length; i++) {
-          pointList.push(new L.LatLng(data["path"][i][1],data["path"][i][2]));
+        for (var i = 0; i < data.length; i++) {
+          pointList.push(new L.LatLng(data[i]["lat"],data[i]["lon"]));
         };
         window.firstpolyline = new L.polyline(pointList, {
         color: 'red',
