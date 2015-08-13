@@ -95,14 +95,14 @@ public class MapActivity extends ActionBarActivity implements OnMapReadyCallback
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         Sensor rotSense=mSensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
 
-       mSensorManager.registerListener(this, rotSense, 400000);
+        mSensorManager.registerListener(this, rotSense, 400000);
 
         ni = new NetworkInteractor();
         TokenStorage tS = new TokenStorage(this);
         oC=new OfflineCacher(tS.getUserID(),tS.getToken(),ni);
         oC.doCache();
 
-
+    
     }
 
     /*
@@ -115,6 +115,9 @@ public class MapActivity extends ActionBarActivity implements OnMapReadyCallback
         // Do something here if sensor accuracy changes.
     }
 
+    //Smoothing value
+    int cmpCount=0;
+
     @Override
     public final void onSensorChanged(SensorEvent event) {
         //Do some rather overly-complicated math to get True north bearing from a Rotation Vector sensor (which is relative to Magnetic north)
@@ -124,8 +127,12 @@ public class MapActivity extends ActionBarActivity implements OnMapReadyCallback
             float[] orientation = new float[3];
             SensorManager.getOrientation(mRotationMatrix, orientation);
             float bearing = (float)Math.toDegrees(orientation[0]) + mDeclination;
-
-            updateCamera(bearing);
+            if (cmpCount > 10) {
+                cmpCount=0;
+                updateCamera(bearing);
+            }else {
+                cmpCount++;
+            }
         }
     }
 
@@ -213,7 +220,7 @@ public class MapActivity extends ActionBarActivity implements OnMapReadyCallback
                         .zoom(18)
                         .tilt(80)
                         .build()));
-        map.getUiSettings().setZoomControlsEnabled(false);
+        map.getUiSettings().setZoomControlsEnabled(true);
         map.getUiSettings().setZoomGesturesEnabled(false);
 
 
