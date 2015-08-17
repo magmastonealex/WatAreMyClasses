@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -32,22 +33,23 @@ Handles scanning a QR code (should probably be abstracted away), storing it usin
 Moves user over to MapActivity.
 
  */
-public class SignInActivity extends ActionBarActivity {
+public class SignInActivity extends Activity {
     private Activity ourActivity;
     private NetworkInteractor ni;
     private TextView helloTextView;
     private TokenStorage tS;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         ourActivity=this; //Saved for button calbacks.
+
         setContentView(R.layout.activity_sign_in); // Set our view as defined in XML.
+
         tS = new TokenStorage(this);
-       if(tS.hasLoggedIn()){
-            startActivity(new Intent(this, MapActivity.class));
-            finish();
-        }
+     //  if(tS.hasLoggedIn()){
+     //       startActivity(new Intent(this, MapActivity.class));
+     //       finish();
+     //   }
 
 
         //Get the required elements to make our view interactive
