@@ -1,4 +1,5 @@
-# WatAreMyClasses
+![Project logo](/WatLogo.png)
+
 Campus Navigation App for UW
 
 Getting set up

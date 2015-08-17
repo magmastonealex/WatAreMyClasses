@@ -46,10 +46,10 @@ public class SignInActivity extends Activity {
         setContentView(R.layout.activity_sign_in); // Set our view as defined in XML.
 
         tS = new TokenStorage(this);
-     //  if(tS.hasLoggedIn()){
-     //       startActivity(new Intent(this, MapActivity.class));
-     //       finish();
-     //   }
+       if(tS.hasLoggedIn()){
+            startActivity(new Intent(this, MapActivity.class));
+            finish();
+        }
 
 
         //Get the required elements to make our view interactive
