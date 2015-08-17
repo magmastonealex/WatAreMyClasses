@@ -33,6 +33,7 @@ double curLong;
     _mapView.settings.myLocationButton = TRUE; // Let users find themselves.
     _mapView.camera=camera; // Move to our initial camera.
     _mapView.myLocationEnabled=true; // Let users find themselves.
+    _mapView.settings.indoorPicker=false;
     if(locationmanager==nil){ // Probably yes, but not always.
         locationmanager = [[CLLocationManager alloc] init]; // Make a new LocationManager so that we can get location info.
     }
@@ -74,10 +75,15 @@ double curLong;
         }];
     }];
 }
-
+int cnt=0;
 -(void) locationManager:(CLLocationManager*) manager didUpdateHeading:(nonnull CLHeading *)newHeading{
-    [_mapView animateToBearing:newHeading.trueHeading]; // trueHeading is true north like Gmaps expects.
-}
+    if(cnt > 10){
+        [_mapView animateToBearing:newHeading.trueHeading]; // trueHeading is true north like Gmaps expects.
+        cnt=0;
+    }else{
+        cnt++;
+    }
+    }
 -(void) locationManager:(CLLocationManager *)manager didUpdateLocations:(nonnull NSArray<CLLocation *> *)locations{
     CLLocation * loc=[locations lastObject]; //Get most recent location.
     curLat=loc.coordinate.latitude; // Update for pathfinding.
