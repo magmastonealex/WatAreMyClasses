@@ -32,12 +32,25 @@ public class TokenStorage {
             e.commit();
         }
         public String getUserID(){
-            return sP.getString("uid","baduserid");
+
+            String uid = sP.getString("uid","baduserid");
+            if(uid.equals("baduserid")){
+                return  null;
+            }else{
+                return  uid;
+            }
         }
         public String getToken(){
-            return sP.getString("token","badtoken");
+
+            String tkn = sP.getString("token","badtoken");
+            if(tkn.equals("badtoken")){
+                return  null;
+            }else{
+                return  tkn;
+            }
         }
         public Boolean hasLoggedIn(){
+
                if(sP.getString("token","nope").equals("nope")){
                    return false;
                }else{

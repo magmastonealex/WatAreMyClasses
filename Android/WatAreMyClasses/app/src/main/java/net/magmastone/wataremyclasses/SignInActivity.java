@@ -44,53 +44,37 @@ public class SignInActivity extends ActionBarActivity {
         ourActivity=this; //Saved for button calbacks.
         setContentView(R.layout.activity_sign_in); // Set our view as defined in XML.
         tS = new TokenStorage(this);
-        if(tS.hasLoggedIn()){
+       if(tS.hasLoggedIn()){
             startActivity(new Intent(this, MapActivity.class));
             finish();
         }
 
+
         //Get the required elements to make our view interactive
         Button btn = (Button) findViewById(R.id.scanButton); // Scan button to scan a barcode.
+
+        Button btnSkip = (Button) findViewById(R.id.skipButton); // Scan button to scan a barcode.
+        btnSkip.setOnClickListener(new SkipClick());
         btn.setOnClickListener(new HandleClick()); // Listener down below.
 
-        helloTextView=(TextView) findViewById(R.id.hellotext); //Our Hello World text. Very temporary.
 
-        ni = new NetworkInteractor(); // Example of using NetworkInteractor.
-        ni.webservice.getClosestNode("43.726733","-79.781998",new Callback<WatNode>() {
-            @Override
-            public void success(WatNode watNode, Response response) {
-                helloTextView.setText(watNode.id);
-            }
 
-            @Override
-            public void failure(RetrofitError error) {
-                helloTextView.setText(error.getLocalizedMessage());
-            }
-        });
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_sign_in, menu);
+
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+    private class SkipClick implements View.OnClickListener {
+        public void onClick(View btn) {
+            startActivity(new Intent(ourActivity, MapActivity.class)); // Continue, skipping everything else.
         }
-
-        return super.onOptionsItemSelected(item);
     }
+
 
 
     private class HandleClick implements View.OnClickListener {
@@ -100,14 +84,13 @@ public class SignInActivity extends ActionBarActivity {
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-            TextView tvUserID=(TextView)findViewById(R.id.uid);
             IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent); // Check if it's from Zxing or our own...
             if (scanResult != null) {
                 String res= scanResult.getContents(); // Set the UserID text to the barcode contents.
                 String[] uidtoken=res.split(":");
                 tS.setToken(uidtoken[0],uidtoken[1]);
                 Log.d("SignInActivity","User logged in with token: "+uidtoken[0]+":"+uidtoken[1]);
-                startActivity(new Intent(this, MapActivity.class));
+                startActivity(new Intent(this, MapActivity.class))  ;
                 finish();
             }
     }
