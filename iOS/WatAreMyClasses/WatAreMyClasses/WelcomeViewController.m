@@ -15,32 +15,18 @@
 @end
 
 @implementation WelcomeViewController
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     // Do any additional setup after loading the view.
 }
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     TokenStorage * stor = [TokenStorage sharedStorage];
     if(stor.userID != nil){// check to see if user has already logged in.
+        [self performSegueWithIdentifier:@"goNext" sender:self];
         
-        UIAlertController *alertController = [UIAlertController
-                                              alertControllerWithTitle:@"Classes not available"
-                                              message:@"Please quit the app and log in!"
-                                              preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *okAction = [UIAlertAction
-                                   actionWithTitle:NSLocalizedString(@"OK", @"OK action")
-                                   style:UIAlertActionStyleDefault
-                                   handler:^(UIAlertAction *action)
-                                   {
-                                       [self performSegueWithIdentifier:@"goNext" sender:self];
-                                   }];
-        [alertController addAction:okAction];
-        [self presentViewController:alertController animated:YES completion:nil];
-        
-        
+    
     }
 }
 
