@@ -24,7 +24,7 @@
     [super viewDidAppear:animated];
     TokenStorage * stor = [TokenStorage sharedStorage];
     if(stor.userID != nil){// check to see if user has already logged in.
-        [self performSegueWithIdentifier:@"goNext" sender:self];
+       // [self performSegueWithIdentifier:@"goNext" sender:self];
         
     
     }
