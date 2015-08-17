@@ -8,7 +8,8 @@
     <link href="/static/css/bootstrap.min.css" rel="stylesheet">
     <link href="/static/css/bootstrap-theme.min.css" rel="stylesheet">
         <style type="text/css">
-      html, body, #map-canvas { height: 100%; margin: 0; padding: 0;}
+      html, body, #map-canvas,.map-container { height: 100%; margin: 0; padding: 0;}
+      body { padding-top: 50px; }
       .schedudiv{
         position: fixed;
         bottom: 0px;
@@ -43,7 +44,7 @@
 
   </head>
   <body role="document">
-<nav class="navbar navbar-inverse navbar-static-top" style="margin-bottom: 0px;">
+<nav class="navbar navbar-inverse navbar-fixed-top" style="margin:0;">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -64,7 +65,6 @@
       </div>
     </nav>
 <div id="map-canvas"></div>
-
 <div id="qrmodal" class="modal fade">
   <div class="modal-dialog">
     <div class="modal-content">

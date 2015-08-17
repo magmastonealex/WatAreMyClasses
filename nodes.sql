@@ -395,7 +395,7 @@ INSERT INTO nodes (id,name,lat,long) VALUES ('1983396698','',43.4701828,-80.5420
 INSERT INTO nodes (id,name,lat,long) VALUES ('1675101244','',43.4678679,-80.5462533);
 INSERT INTO nodes (id,name,lat,long) VALUES ('1435948710','',43.4688352,-80.5456643);
 INSERT INTO nodes (id,name,lat,long) VALUES ('591407984','',43.4734896,-80.5459914);
-INSERT INTO nodes (id,name,lat,long) VALUES ('b-STP','St. Paul's University College',43.4676800896,-80.546426703);
+INSERT INTO nodes (id,name,lat,long) VALUES ('b-STP','St. Pauls University College',43.4676800896,-80.546426703);
 INSERT INTO nodes (id,name,lat,long) VALUES ('591407983','',43.4737442,-80.5461278);
 INSERT INTO nodes (id,name,lat,long) VALUES ('1947819572','',43.4712815,-80.5391897);
 INSERT INTO nodes (id,name,lat,long) VALUES ('1983533642','',43.4690416,-80.5404772);
@@ -1584,7 +1584,7 @@ INSERT INTO nodes (id,name,lat,long) VALUES ('1928130853','',43.4725635,-80.5435
 INSERT INTO nodes (id,name,lat,long) VALUES ('1928130854','',43.4726985,-80.5443572);
 INSERT INTO nodes (id,name,lat,long) VALUES ('1928130857','',43.4726042,-80.5439658);
 INSERT INTO nodes (id,name,lat,long) VALUES ('1450232664','',43.4703189,-80.5442623);
-INSERT INTO nodes (id,name,lat,long) VALUES ('b-TH','Tutors' Houses',43.47063549,-80.5527220939);
+INSERT INTO nodes (id,name,lat,long) VALUES ('b-TH','Tutors Houses',43.47063549,-80.5527220939);
 INSERT INTO nodes (id,name,lat,long) VALUES ('1928130858','',43.4727169,-80.5443639);
 INSERT INTO nodes (id,name,lat,long) VALUES ('339375684','',43.4721837,-80.5433023);
 INSERT INTO nodes (id,name,lat,long) VALUES ('1947819501','',43.4698987,-80.5428903);
