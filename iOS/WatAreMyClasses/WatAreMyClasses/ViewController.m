@@ -30,7 +30,7 @@ double curLong;
     
     GMSCameraPosition * camera = [GMSCameraPosition cameraWithLatitude:43.470366  longitude:-80.541945 zoom:18 bearing:0 viewingAngle:80]; // Setup our initial camera position over Waterloo.
     
-    _mapView.settings.myLocationButton = TRUE; // Let users find themselves.
+    _mapView.settings.myLocationButton = FALSE; // Let users find themselves.
     _mapView.camera=camera; // Move to our initial camera.
     _mapView.myLocationEnabled=true; // Let users find themselves.
     _mapView.settings.indoorPicker=false;
@@ -88,6 +88,7 @@ int cnt=0;
     CLLocation * loc=[locations lastObject]; //Get most recent location.
     curLat=loc.coordinate.latitude; // Update for pathfinding.
     curLong=loc.coordinate.longitude;
+    [_mapView animateToLocation:loc.coordinate];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -100,7 +101,31 @@ int cnt=0;
     NSString *bid=((ClassesViewController*)unwindSegue.sourceViewController).doneGoto; //NodeID for desired building
     NSLog(@"Class: %@",bid);
     if([bid isEqualToString:@"none"]){
+        UIAlertController *alertController = [UIAlertController
+                                              alertControllerWithTitle:@"Make sure to sign in!"
+                                              message:@"You need to sign in to view your classes!"
+                                              preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancelAction = [UIAlertAction
+                                       actionWithTitle:@"Go back"
+                                       style:UIAlertActionStyleCancel
+                                       handler:^(UIAlertAction *action)
+                                       {
+                                           NSLog(@"Cancelled");
+                                       }];
+        
+        UIAlertAction *okAction = [UIAlertAction
+                                   actionWithTitle:@"Sign In"
+                                   style:UIAlertActionStyleDefault
+                                   handler:^(UIAlertAction *action)
+                                   {
+                                       [self performSegueWithIdentifier:@"gotoLogin" sender:self];
 
+                                   }];
+        [alertController addAction:cancelAction];
+        [alertController addAction:okAction];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self presentViewController:alertController animated:YES completion:nil];
+        });
     }else{
     [self doPathPolyline:bid];
     }
@@ -109,8 +134,27 @@ int cnt=0;
 {
     NSString * bid=((BuildingsViewController*)unwindSegue.sourceViewController).doneGoto; // NodeID for desired building
     NSLog(@"Buildings: %@",bid);
-    [self doPathPolyline:bid];
-    
+    if([bid isEqualToString:@"none"]){
+        UIAlertController *alertController = [UIAlertController
+                                              alertControllerWithTitle:@"Internet connection required!"
+                                              message:@"You need an internet connection to use this app!"
+                                              preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancelAction = [UIAlertAction
+                                       actionWithTitle:@"OK"
+                                       style:UIAlertActionStyleDefault
+                                       handler:^(UIAlertAction *action)
+                                       {
+                                           DataCacher * cache=[DataCacher sharedCache];
+                                           [cache doCache];
+                                           NSLog(@"Cancelled");
+                                       }];
+        [alertController addAction:cancelAction];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self presentViewController:alertController animated:YES completion:nil];
+        });
+    }else{
+        [self doPathPolyline:bid];
+    }
 }
 
 @end
