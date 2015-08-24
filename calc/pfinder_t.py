@@ -2,6 +2,7 @@ import pickle
 import os
 import threading
 import subprocess
+import array
 #Loads/calculates needed data for pathfinding.
 
 from viewer import NodeCollection,Node
@@ -73,7 +74,7 @@ class pathFinder_Threaded:
 				print "inere"
 		fout1=open("cimp/emaps.csv","w")
 		for nid,new in nodes_mapping.items():
-			fout1.write(nid+"->"+str(new)+"\n")
+			fout1.write(nid+";"+str(new)+"\n")
 		fout1.close()
 		print "Writing data for C..."
 		fout=open("cimp/data.csv","w")
@@ -81,64 +82,108 @@ class pathFinder_Threaded:
 		for edge in edges:
 			fout.write(str(edge[0])+","+str(edge[1])+","+str(int(edge[2]))+"\n")
 		fout.close()
-
+		self.nodes_map=nodes_mapping
+		self.nodes_inv=nodes_inverse
 		#raw_input("Please run the C program and press enter here to continue processing") # Python's subprocess.call observably wastes resources. 
 		os.chdir("cimp")
 		subprocess.call(["./out"])
 		os.chdir("..")
+		#fin=open("cimp/dataout.csv","r")
+		#dist=[]
+		#nex=[]
+		#c_n1=0
+		#for line in fin.readlines():
+		#	#dist[nodes_inverse[int(c_n1)]]={}
+		#	tmp=array.array("I")
+		#	line=line.rstrip()[1:]
+		#	dat=line.split(",")
+		#	c_n2=0
+		#	for x in dat:
+		#		n,d=x.split("-")
+		#		#dist[nodes_inverse[int(c_n1)]][nodes_inverse[int(c_n2)]]=int(d)
+		#		tmp.append(int(d))
+		#		c_n2=c_n2+1
+		#	c_n1=c_n1+1
+		#	dist.append(tmp)
+		#	print "dst="+str(c_n1)
+		#fin.close()
+		#del dist
+		##pickle.dump(dist,open("dist.pic","wb"))
+		#
+		#fin=open("cimp/dataout-nex.csv","r")
+		#c_n1=0
+		#nex=[]
+		#for line in fin.readlines():
+		#	#nex[nodes_inverse[int(c_n1)]]={}
+		#	tmp=array.array("I")
+		#	line=line.rstrip()[1:]
+		#	dat=line.split(",")
+		#	c_n2=0
+		#	for x in dat:
+		#		n,d=x.split("-")
+		#		if c_n2==c_n1:
+		#			tmp.append(int(0))
+		#			c_n2=c_n2+1
+		#			continue
+		#		tmp.append(int(d))
+		#		#nex[nodes_inverse[int(c_n1)]][nodes_inverse[int(c_n2)]]=nodes_inverse[)]
+		#		c_n2=c_n2+1
+		#	nex.append(tmp)
+		#	c_n1=c_n1+1
+		#	print "nex="+str(c_n1)
+		#fin.close()
+		#self.nex=nex
+		##pickle.dump(nex,open("nex.pic","wb"))
+		print "dne"
+			
 
-		fin=open("cimp/dataout.csv","r")
+	#Load all the files.
+	def load(self):
+		fout1=open("emaps.csv","r")
+		self.nodes_map={}
+		self.nodes_inv={}
+		for line in fout1.readlines():
+			line=line.rstrip()
+			print line
+			nid,new = line.split(";")
+			self.nodes_map[nid]=int(new)
+			self.nodes_inv[int(new)]=nid
+		fout1.close()
+		fin=open("dataout-nex.csv","r")
 		c_n1=0
+		nex=[]
 		for line in fin.readlines():
-			dist[nodes_inverse[int(c_n1)]]={}
-			line=line.rstrip()[1:]
-			dat=line.split(",")
-			c_n2=0
-			for x in dat:
-				n,d=x.split("-")
-				dist[nodes_inverse[int(c_n1)]][nodes_inverse[int(c_n2)]]=int(d)
-				c_n2=c_n2+1
-			c_n1=c_n1+1
-		fin.close()
-		fin=open("cimp/dataout-nex.csv","r")
-		c_n1=0
-		for line in fin.readlines():
-			nex[nodes_inverse[int(c_n1)]]={}
+			#nex[nodes_inverse[int(c_n1)]]={}
+			tmp=array.array("I")
 			line=line.rstrip()[1:]
 			dat=line.split(",")
 			c_n2=0
 			for x in dat:
 				n,d=x.split("-")
 				if c_n2==c_n1:
+					tmp.append(int(0))
 					c_n2=c_n2+1
 					continue
-				nex[nodes_inverse[int(c_n1)]][nodes_inverse[int(c_n2)]]=nodes_inverse[int(d)]
+				tmp.append(int(d))
+				#nex[nodes_inverse[int(c_n1)]][nodes_inverse[int(c_n2)]]=nodes_inverse[)]
 				c_n2=c_n2+1
+			nex.append(tmp)
 			c_n1=c_n1+1
+			print "nex="+str(c_n1)
 		fin.close()
-		self.dist=dist
 		self.nex=nex
-
-		print "Finished!"
-		#dedupe based on the same characteristics as NodeController does for Edges.
-		print "De-Dupe complete"
-		if "test" not in kwargs:
-			pickle.dump(self.dist,open("dist.pic","wb"))
-			pickle.dump(self.nex,open("nex.pic","wb"))
-
-	#Load all the files.
-	def load(self):
-		self.dist=pickle.load(open("dist.pic","rb"))
-		self.nex=pickle.load(open("nex.pic","rb"))
 	
 	#findPath is used to find the ideal path between two nodes.
 	#distance is easy: self.dist[u][v]
 	#Pass in two node IDs.
 	def findPath(self,u,v):
-		if self.nex[u][v]==None:
+		acndu=self.nodes_map[u]
+		acndv=self.nodes_map[v]
+
+		if self.nex[acndu][acndv]==None:
 			return []
 		path = [u]
-		while u != v:
-			u=self.nex[u][v]
-			path.append(u)
+		while acndu != acndv:
+			acndu=self.nex[acndu][acndv]
+			path.append(self.nodes_inv[acndu])
 		return path
