@@ -9,6 +9,7 @@
     <link href="/static/css/bootstrap-theme.min.css" rel="stylesheet">
         <style type="text/css">
       html, body, #map-canvas,.map-container { height: 100%; margin: 0; padding: 0;}
+
       body { padding-top: 50px; }
       .schedudiv{
         position: fixed;
@@ -16,7 +17,34 @@
         left: 0px;
         height: 40%;
         width: 20%;
-        background-color: #fff;
+        background-color: #757575;
+        color: #EEEEEE;
+        opacity: 0.6;
+        padding-right: 1%;
+        padding-top: 1%;
+        padding-left: 1%;
+        transition: opacity .2s ease-in-out;
+        -moz-transition: opacity .2s ease-in-out;
+        -webkit-transition: opacity .2s ease-in-out;
+        direction: rtl;
+        overflow-y:scroll;
+        -webkit-overflow-scrolling: touch;
+        border-top-right-radius: 40px;
+      }
+      .scheduchild{
+        direction: ltr;
+      }
+      .schedudiv:hover{
+        opacity: 1.0;
+      }
+      .buildingdiv{
+        position: fixed;
+        bottom: 0px;
+        right: 0px;
+        height: 40%;
+        width: 20%;
+        background-color: #757575;
+        color: #EEEEEE;
         opacity: 0.6;
         padding-right: 1%;
         padding-top: 1%;
@@ -27,8 +55,9 @@
 
         overflow-y:scroll;
         -webkit-overflow-scrolling: touch;
+        border-top-left-radius: 40px;
       }
-      .schedudiv:hover{
+      .buildingdiv:hover{
         opacity: 1.0;
       }
       .smtxt{
@@ -38,13 +67,26 @@
         font-weight: bold;
         text-align: center;
       }
-
+      .iconLink{
+        background-color: #eee;
+        border-radius: 20px;
+        height: 40px;
+        margin-top: 5px;
+        margin-right: 10px;
+      }
+      .iconLink:hover{
+        background-color: #fff !important;
+      }
+      .actualLogo{
+        margin-top: -5px;
+      }
     </style>
+      <link rel="stylesheet" href="/static/bootstrap-navbar.css" />
      <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
 
   </head>
   <body role="document">
-<nav class="navbar navbar-inverse navbar-fixed-top" style="margin:0;">
+<nav class="navbar navbar-default navbar-fixed-top" style="margin:0;">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -53,13 +95,12 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">WatAreMyClasses</a>
+          <a class="navbar-brand iconLink" href="#"><img class="actualLogo" src="/static/WatLogo.png" style="max-width:100%;height:25px;"/></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="/">Home</a></li>
+            <li class="active " ><a href="/">Home</a></li>
             <li><a href="#about" data-toggle="modal" data-target="#qrmodal">Sync Mobile App</a></li>
-            <li><a href="#contact">Upload new Schedule</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -85,10 +126,18 @@
 
 
 <div class="schedudiv">
+<div class="scheduchild">
 <h4>Today's Schedule (click to navigate)</h4>
+
 {% for cls in classes %}
 <div lcloc="{{cls.lastClassLoc}}" loc="{{cls.build}}" class="cls alert alert-{{cls.col}}" role="alert">{{cls.type}} - {{cls.class_name}} - {{cls.where}}<br><p class="smtxt">{{cls.timestamp}}-{{cls.timeend}}</p></div>
 {% endfor %}
+</div>
+</div>
+<div class="buildingdiv">
+<h4>Buildings on Campus</h4>
+
+
 </div>
      <script src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -96,8 +145,8 @@
 
     <script type="text/javascript">
     function removeAnnotations(){
-      for (var i = window.markers.length - 1; i >= 0; i--) {
-        map.removeLayer(window.markers[i])
+      if(window.marker){
+        map.removeLayer(window.marker);
       };
       map.removeLayer(window.firstpolyline);
     }
@@ -120,7 +169,28 @@
     }
 
     $(document).ready(function(){
+      $.getJSON("/buildinglist",function(data){
+        for (var i = 0; i < data.length; i++) {
+          bid=data[i]["id"];
+          nme=data[i]["name"];
+          $(".buildingdiv").append('<div loc="b-'+bid+'" class="bld alert alert-info" role="alert">'+nme+'<br><p class="smtxt">'+bid+'</p></div>')
 
+        };
+
+        $(".bld").click(function(){
+          removeAnnotations();
+          n1="1976894163";
+          if ($(this).attr("loc") != "b-E3"){
+            n1="b-E3";
+          }
+          $.getJSON("/getpath?node1="+n1+"&node2="+$(this).attr("loc"), function (data2){
+            cnode=data2[data2.length-1]
+            window.marker = L.marker([cnode["lat"], cnode["lon"]]).addTo(map);
+          });
+        });
+
+
+      });
       new QRCode(document.getElementById("qrcode"), "{{qr_data}}");
 
       $(".cls").click(function(){
@@ -131,12 +201,13 @@
           alert("Same building!");
         }
       });
+
     window.map = L.map('map-canvas').setView([43.471476, -80.543259], 18);
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
-    window.markers=[];
+    
 
 
   var pointList =  [

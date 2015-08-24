@@ -1,10 +1,62 @@
+<!DOCTYPE html>
 <html>
-<body>
-<p>TODO: style this</p>
-<p>Copy your Quest schedule ( list view, ctrl-A, ctrl-C, go here in the text box, ctrl-V). Click submit. Will take you to the map. </p>
-<form action="" method="POST">
-	<textarea name="quest"></textarea>
-	<input type="submit" value="Submit">
+  <head>
+<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+  <style>
+  	body{
+  		height: 100%; 
+  		margin: 0;
+  		padding: 0;
+  		background:url("/static/backgrounds/2.jpg") no-repeat center center fixed;
+  		background-color: #fff;
+  		background-size: cover;
+
+  	}
+  	#welcomecontainer{
+  		padding-top: 10%;
+  	}
+  	#stp1{
+  		max-height: 50%;
+  	}
+  	#stp2{
+  		max-height: 50%;
+  	}
+  </style>
+  </head>
+
+ <body>
+<div class="container" id="welcomecontainer">
+<div class="jumbotron">
+		<center>
+        <h2>Great! Now add your schedule!</h2>
+        </center>
+<center>
+<img id="stp1" src="/static/step1.png"><br>
+        <p>First, log into Quest, and click Enroll.</p>
+
+
+        <img id="stp2" src="/static/step2.png"><br>
+        <p>Next, click List View. Your screen should look like this.</p></center>
+
+        <p>Now, select the contents of the page (control-A on Windows &amp; Linux, command-A on Mac), and copy it (control-C on Windows &amp; Linux, command-C on Mac). Paste the contents in the box below, and click submit!</p><form action="" method="POST">
+  <textarea style="width:100%" name="quest" placeholder="Paste here!"></textarea><br>
+  <input type="submit" value="Submit" class="btn btn-lg btn-success"role="button">
 </form>
+        
+      </div>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </body>
 </html>
