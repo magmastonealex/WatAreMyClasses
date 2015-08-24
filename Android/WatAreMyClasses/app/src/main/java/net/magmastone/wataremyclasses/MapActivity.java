@@ -99,7 +99,7 @@ public class MapActivity extends ActionBarActivity implements OnMapReadyCallback
 
         ni = new NetworkInteractor();
         TokenStorage tS = new TokenStorage(this);
-        oC=new OfflineCacher(tS.getUserID(),tS.getToken(),ni);
+        oC=new OfflineCacher(tS.getUserID(),tS.getToken(),ni,this);
         oC.doCache();
 
     
@@ -127,7 +127,7 @@ public class MapActivity extends ActionBarActivity implements OnMapReadyCallback
             float[] orientation = new float[3];
             SensorManager.getOrientation(mRotationMatrix, orientation);
             float bearing = (float)Math.toDegrees(orientation[0]) + mDeclination;
-            if (cmpCount > 10) {
+            if (cmpCount > 40) {
                 cmpCount=0;
                 updateCamera(bearing);
             }else {
@@ -148,6 +148,7 @@ public class MapActivity extends ActionBarActivity implements OnMapReadyCallback
         LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient,this); //Stop while activity is in background.
     }
     //What to do when we get new lat/lon.
+    int curTime=0;
     @Override
     public void onLocationChanged(Location location) {
         GeomagneticField field = new GeomagneticField( //Let Google do the math :)
@@ -157,6 +158,16 @@ public class MapActivity extends ActionBarActivity implements OnMapReadyCallback
                 System.currentTimeMillis()
         );
 
+        if(curTime==0){
+            map.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(location.getLatitude(),location.getLongitude())));
+        }else{
+            curTime=1;
+        }
+        if(location.hasBearing()){
+            //updateCamera(location.getBearing());
+           // Log.d("MapActivity","hadBearing");
+        }
+        map.animateCamera(CameraUpdateFactory.newLatLng(new LatLng(location.getLatitude(),location.getLongitude())));
         // getDeclination returns degrees
         mDeclination = field.getDeclination(); // Saved for reference when compass is used to rotate map.
 
@@ -174,7 +185,7 @@ public class MapActivity extends ActionBarActivity implements OnMapReadyCallback
 
         CameraPosition pos = CameraPosition.builder(oldPos).bearing(bearing).build();
 
-        map.moveCamera(CameraUpdateFactory.newCameraPosition(pos));
+        map.animateCamera(CameraUpdateFactory.newCameraPosition(pos));
     }
 
     /*
@@ -222,6 +233,7 @@ public class MapActivity extends ActionBarActivity implements OnMapReadyCallback
                         .build()));
         map.getUiSettings().setZoomControlsEnabled(true);
         map.getUiSettings().setZoomGesturesEnabled(false);
+        map.getUiSettings().setMyLocationButtonEnabled(false);
 
 
     }
@@ -312,10 +324,14 @@ public class MapActivity extends ActionBarActivity implements OnMapReadyCallback
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_buildings) {
             Intent intent = new Intent(this,BuildingList.class);
+            if(oC.buildings != null) {
             ArrayList<WatBuilding> builds=new ArrayList<>(oC.buildings);
-
-            intent.putExtra("buildings",builds);
-            startActivityForResult(intent,3);
+                intent.putExtra("buildings", builds);
+                startActivityForResult(intent, 3);
+            }else{
+                Toast toast = Toast.makeText(getApplicationContext(), "Building list only available with internet connection! Relaunch the app with a connection.", Toast.LENGTH_LONG); //Not avaialable.
+                toast.show();
+            }
             return true;
         }else if (id == R.id.action_classes){
             Intent intent = new Intent(this,ScheduleViewActivity.class);
