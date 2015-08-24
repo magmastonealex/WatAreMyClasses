@@ -1,8 +1,47 @@
 <!DOCTYPE html>
 <html>
   <head>
+<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+  <style>
+  	body{
+  		height: 100%; 
+  		margin: 0;
+  		padding: 0;
+  		background:url("/static/backgrounds/1.jpg") no-repeat center center fixed;
+  		background-color: #fff;
+  		background-size: cover;
+
+  	}
+  	#welcomecontainer{
+  		padding-top: 10%;
+  	}
+  </style>
   </head>
+
  <body>
-Welcome. You probably want to <a href="/login"> login.</a>
+<div class="container" id="welcomecontainer">
+<div class="jumbotron">
+		<center>
+        <h2>Welcome to</h2>
+        <p class="lead"><img src="/static/WatLogo.png"/></p>
+        </center>
+        <p>WatAreMyClasses is the only navigation app for the Unviersity of Waterloo! After signing up, you can load your class schedule and use our iOS and Android apps to navigate the paths, roads, and tunnels at the University. Whether you're a freshman or a grad student, this app will show you the fastest way between your classes.</p>
+        <p>Just visiting? No problem! WatAreMyClasses will navigate you to any building on campus. Simply download the app and get started!</p>
+        <p><a class="btn btn-lg btn-success" href="/login" role="button">Sign in with WatIAM</a></p>
+      </div>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </body>
 </html>

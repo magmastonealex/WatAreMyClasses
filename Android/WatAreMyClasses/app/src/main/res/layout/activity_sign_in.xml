@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/imageView"
         android:layout_alignParentTop="true"
-        android:src="@drawable/WatLogo" />
+        android:src="@drawable/watlogo" />
 
     <Button
         android:layout_width="fill_parent"

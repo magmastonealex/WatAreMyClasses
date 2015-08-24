@@ -1,5 +1,8 @@
 package net.magmastone.Storage;
 
+import android.content.Context;
+import android.widget.Toast;
+
 import net.magmastone.NetworkInteraction.Models.WatBuilding;
 import net.magmastone.NetworkInteraction.Models.WatClass;
 import net.magmastone.NetworkInteraction.NetworkInteractor;
@@ -25,13 +28,14 @@ public class OfflineCacher {
         private boolean unauth=false;
         private String uid, token;
         private NetworkInteractor ni;
+        private Context Lc;
 
         public List<WatClass> todayClasses; // List of all classes for today
         public HashMap<String, String> buildingshm; // HashMap to look up a name from a building ID.
         public List<WatBuilding> buildings; // List of all (navigable) buildings on campus.
 
 
-        public OfflineCacher(String userID, String Ltoken,NetworkInteractor lni){
+        public OfflineCacher(String userID, String Ltoken,NetworkInteractor lni,Context c){
            if (userID==null){
                unauth=true;
             }
@@ -39,6 +43,7 @@ public class OfflineCacher {
                uid=userID;
                token=Ltoken;
            }
+            Lc=c;
             ni=lni;
        }
        public void doCache(){
@@ -51,7 +56,8 @@ public class OfflineCacher {
 
                     @Override
                     public void failure(RetrofitError error) {
-
+                        Toast toast = Toast.makeText(Lc, "An internet connection is required! Relaunch the app when you have a connection", Toast.LENGTH_LONG);
+                        toast.show();
                     }
                 });
             }
@@ -67,7 +73,8 @@ public class OfflineCacher {
 
                @Override
                public void failure(RetrofitError error) {
-
+                   Toast toast = Toast.makeText(Lc, "An internet connection is required! Relaunch the app when you have a connection", Toast.LENGTH_LONG);
+                   toast.show();
                }
            });
        }
