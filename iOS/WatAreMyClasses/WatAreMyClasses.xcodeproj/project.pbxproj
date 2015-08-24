@@ -13,6 +13,7 @@
 		E3E08ABD1B7AA12E004FB7D5 /* BuildingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E08ABC1B7AA12E004FB7D5 /* BuildingsViewController.m */; };
 		E3E08AC01B7BEB55004FB7D5 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E08ABF1B7BEB55004FB7D5 /* WelcomeViewController.m */; };
 		E3E08AC31B7BEF95004FB7D5 /* TokenStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E08AC21B7BEF95004FB7D5 /* TokenStorage.m */; };
+		E3E08AC51B82995A004FB7D5 /* WatLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = E3E08AC41B82995A004FB7D5 /* WatLogo.png */; };
 		FA5AB95E1B750CF300D36CF2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5AB95D1B750CF300D36CF2 /* main.m */; };
 		FA5AB9611B750CF300D36CF2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5AB9601B750CF300D36CF2 /* AppDelegate.m */; };
 		FA5AB9641B750CF300D36CF2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5AB9631B750CF300D36CF2 /* ViewController.m */; };
@@ -72,6 +73,7 @@
 		E3E08ABF1B7BEB55004FB7D5 /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
 		E3E08AC11B7BEF95004FB7D5 /* TokenStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TokenStorage.h; sourceTree = "<group>"; };
 		E3E08AC21B7BEF95004FB7D5 /* TokenStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TokenStorage.m; sourceTree = "<group>"; };
+		E3E08AC41B82995A004FB7D5 /* WatLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WatLogo.png; sourceTree = "<group>"; };
 		FA5AB9591B750CF200D36CF2 /* WatAreMyClasses.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatAreMyClasses.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA5AB95D1B750CF300D36CF2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FA5AB95F1B750CF300D36CF2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 				E3E08AB81B7A99C6004FB7D5 /* ClassesViewController.h */,
 				E3E08AB91B7A99C6004FB7D5 /* ClassesViewController.m */,
 				E3E08ABB1B7AA12E004FB7D5 /* BuildingsViewController.h */,
+				E3E08AC41B82995A004FB7D5 /* WatLogo.png */,
 				E3E08ABC1B7AA12E004FB7D5 /* BuildingsViewController.m */,
 				E3E08ABE1B7BEB55004FB7D5 /* WelcomeViewController.h */,
 				E3E08ABF1B7BEB55004FB7D5 /* WelcomeViewController.m */,
@@ -354,6 +357,7 @@
 				FA5AB96C1B750CF300D36CF2 /* LaunchScreen.storyboard in Resources */,
 				FA5AB9691B750CF300D36CF2 /* Assets.xcassets in Resources */,
 				FA5AB9671B750CF300D36CF2 /* Main.storyboard in Resources */,
+				E3E08AC51B82995A004FB7D5 /* WatLogo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
