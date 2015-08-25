@@ -228,7 +228,7 @@ function uw_waterloo_quest_schedule($input, $format, $summary = '@code @type in 
                   $result_str.
                   "\r\nEND:VCALENDAR";
     return $result_str;
-  } elseif ($format='js') {
+  } elseif ($format=='js') {
     return $js_array;
   }
 }
