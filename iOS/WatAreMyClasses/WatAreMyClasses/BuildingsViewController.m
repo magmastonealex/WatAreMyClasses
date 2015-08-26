@@ -21,9 +21,15 @@
     [super viewDidLoad];
     DataCacher * sCache=[DataCacher sharedCache];
     classesArray=sCache.buildings;
+    doneGoto=@"none";
     // Do any additional setup after loading the view.
 }
-
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    if (classesArray==nil){
+        [self performSegueWithIdentifier:@"LeaveBuildings" sender:self];
+    }
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
