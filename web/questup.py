@@ -23,12 +23,12 @@ class QuestUploadServlet:
 		ath=Auth(dbase)
 		if not ath.checkAuth():
 			raise web.seeother('/')
-		inp=web.input(quest="badquesty")
-		if inp["quest"] != "badquesty":
+		inp=web.input(quest="")
+		if inp["quest"] != "":
 			q=Quest(dbase)
 			q.getSched(inp["quest"],ath.getUserid())
 			dbase.user_setold(ath.getUserid())
 			raise web.seeother('/map')
 		else:
-			return "Please actually submit something."
+			return "Please go back and actually submit something."
 		# redirect(CASLoginURL)
