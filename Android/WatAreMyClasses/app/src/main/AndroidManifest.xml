@@ -23,7 +23,7 @@
     <application
         android:allowBackup="true"
         android:hardwareAccelerated="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/ic_launcher_ic_main_icon"
         android:label="@string/app_name"
         android:theme="@style/MyTheme" >
         <activity

@@ -241,6 +241,11 @@ public class MapActivity extends ActionBarActivity implements OnMapReadyCallback
     //Set path from current location to given node, wiping out old PolyLine.
     private void setPathFromClosestToNode(final String to){
         Location lastLoc = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+        if(lastLoc==null){
+            Toast toast = Toast.makeText(getApplicationContext(), "You need location services enabled to use this app.", Toast.LENGTH_LONG); //Not avaialable.
+            toast.show();
+            return;
+        }
         ni.webservice.getClosestNode(String.valueOf(lastLoc.getLatitude()),String.valueOf(lastLoc.getLongitude()), new Callback<WatNode>() {
             @Override
             public void success(WatNode watNode, Response response) {

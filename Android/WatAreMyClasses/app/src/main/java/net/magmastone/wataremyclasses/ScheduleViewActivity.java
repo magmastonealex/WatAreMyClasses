@@ -34,7 +34,6 @@ public class ScheduleViewActivity extends ActionBarActivity {
         final ListView listview = (ListView) findViewById(R.id.listview);
         Intent intent = getIntent();
         ArrayList<WatClass> wb= intent.getParcelableArrayListExtra("classes");
-        Log.d("BAA", wb.get(0).class_name);
         final WatClass[] arrayWatClass = wb.toArray(new WatClass[wb.size()]);
         SchedArrayAdapter baa = new SchedArrayAdapter(this,arrayWatClass);
         listview.setAdapter(baa);
